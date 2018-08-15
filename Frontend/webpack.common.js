@@ -1,7 +1,5 @@
-var glob = require("glob");
 var copy = require('copy-webpack-plugin');
 var path = require('path');
-var webpack = require('webpack');
 
 module.exports = {
     entry: './src/index.jsx',
@@ -49,9 +47,6 @@ module.exports = {
         }
     ]},
     plugins: [
-        new copy([
-            { context: './src/components', from: '**/*.html', to: 'views' },         
-            { context: './src', from: 'index.html', to: '' }
-        ])
+        new copy([{ context: './src', from: 'index.html', to: '' }])
     ]
 }

@@ -9,23 +9,22 @@ import GridItem from '../../components/grid/gridItem.jsx';
 import estilos from '../../assets/styles/views/home/homeStyle.jsx';
 
 class Home extends Component {
-
-    render() {
-        const { classes, ...rest } = this.props;
-        return (
-          <Layout className={classes.main}>
-            <GridContainer>
-              <GridItem>
-                <div className={classes.container}>
-                  <div className={classes.title}>
-                    <h1>Home</h1>
-                  </div>
+  render() {
+      const { classes, ...rest } = this.props;
+      return (
+        <Layout className={classes.main}>
+          <GridContainer>
+            <GridItem>
+              <div className={classes.container}>
+                <div className={classes.title}>
+                  <h1>Home</h1>
                 </div>
-              </GridItem>
-            </GridContainer>
-          </Layout>
-        )
-    };
+              </div>
+            </GridItem>
+          </GridContainer>
+        </Layout>
+      )
+  };
 }
 
 export default withStyles(estilos)(Home)
