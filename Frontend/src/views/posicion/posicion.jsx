@@ -28,8 +28,7 @@ class Posicion extends Component {
       var posicion = this.props.match.params.posicion;
       axios.get(`${process.env.HOST_BACK}/area/${area}/${posicion}`)
         .then((res) => {
-          var converter = new showdown.Converter()
-          console.log(res);
+          var converter = new showdown.Converter();
           this.setState({
             Titulo: res.data.Titulo,
             Descripcion: converter.makeHtml(res.data.Descripcion)

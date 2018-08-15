@@ -9,7 +9,7 @@ class Areas {
     ObtenerTodas(success, error) {
         try{
             var areas = cacheAreas.get("areas", true);
-            callback(areas);
+            success(areas);
         } catch(err) {
             axios.get(`${config.CMS}/area`)
                 .then((response) =>  {
