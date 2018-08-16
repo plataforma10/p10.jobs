@@ -13,10 +13,10 @@ class Areas {
         } catch(err) {
             axios.get(`${config.CMS}/area`)
                 .then((response) =>  {
-                    cacheAreas.set("areas", response.data, config.CACHE_AREAS)
                     var areas = response.data.map(function (area) { 
                         return areaMapper.MapearArea(area);                      
                     });
+                    cacheAreas.set("areas", areas, config.CACHE_AREAS)
                     success(areas);
                 })
                 .catch((err) => {
