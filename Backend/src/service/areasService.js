@@ -1,42 +1,50 @@
 var axios = require('axios');
 var config = require('../settings/configuracion').Obtener(process.env.NODE_ENV);
 var slugify = require('../helpers/slugify');
-var NodeCache = require( "node-cache" );
+var NodeCache = require("node-cache");
 var areaMapper = require('../mappers/areaMapper');
 const cacheAreas = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 class Areas {
-    ObtenerTodas(success, error) {
-        try{
+
+    ObtenerTodas() {
+        try {
             var areas = cacheAreas.get("areas", true);
-            success(areas);
-        } catch(err) {
-            axios.get(`${config.CMS}/area`)
-                .then((response) =>  {
-                    var areas = response.data.map(function (area) { 
-                        return areaMapper.MapearArea(area);                      
+            return {
+                status: 200,
+                data: areas
+            };
+        } catch (err) {
+            return axios.get(`${config.CMS}/area`)
+                .then((response) => {
+                    var areas = response.data.map(function (area) {
+                        return areaMapper.MapearArea(area);
                     });
                     cacheAreas.set("areas", areas, config.CACHE_AREAS)
-                    success(areas);
+                    return {
+                        status: 200,
+                        data: areas
+                    };
                 })
                 .catch((err) => {
-                    error(err);
+                    err.data = [];
+                    return err;
                 });
-        }   
+        }
     }
 
-    Obtener(nombre, success, error) {
-        this.ObtenerTodas((areas) => {
-            var area = areas.find(x => slugify(x.Nombre) === nombre.toLowerCase())
-            success(area);
-        }, error);
+    async Obtener(nombre) {
+        var res = await this.ObtenerTodas();
+        var area = res.data.find(x => slugify(x.Nombre) === nombre.toLowerCase());
+        res.data = area ? area : [];
+        return res;
     }
 
-    ObtenerPosicion(nombre, titulo, success, error) {
-        this.Obtener(nombre, (area) => {
-            var posicion = area.Posiciones.find(x => slugify(x.Titulo) == titulo.toLowerCase());
-            success(posicion);
-        }, error)
+    async ObtenerPosicion(nombre, titulo) {
+        var res = await this.Obtener(nombre);
+        var posicion = res.data.find(x => slugify(x.Titulo) == titulo.toLowerCase());
+        res.data = posicion ? posicion : [];
+        return res;
     }
 }
 
