@@ -7,10 +7,13 @@ const cacheAreas = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 class Areas {
 
-    ObtenerTodas(error) {
+    ObtenerTodas() {
         try {
             var areas = cacheAreas.get("areas", true);
-            return areas;
+            return {
+                status: 200,
+                data: areas
+            };
         } catch (err) {
             return axios.get(`${config.CMS}/area`)
                 .then((response) => {
@@ -18,24 +21,30 @@ class Areas {
                         return areaMapper.MapearArea(area);
                     });
                     cacheAreas.set("areas", areas, config.CACHE_AREAS)
-                    return areas;
+                    return {
+                        status: 200,
+                        data: areas
+                    };
                 })
                 .catch((err) => {
-                    error(err);
+                    err.data = [];
+                    return err;
                 });
         }
     }
 
-    async Obtener(nombre, error) {
-        var areas = await this.ObtenerTodas(error);
-        var area = areas.find(x => slugify(x.Nombre) === nombre.toLowerCase());
-        return area;
+    async Obtener(nombre) {
+        var res = await this.ObtenerTodas();
+        var area = res.data.find(x => slugify(x.Nombre) === nombre.toLowerCase());
+        res.data = area ? area : [];
+        return res;
     }
 
-    async ObtenerPosicion(nombre, titulo, error) {
-        var area = await this.Obtener(nombre, error);
-        var posicion = area.Posiciones.find(x => slugify(x.Titulo) == titulo.toLowerCase());
-        return posicion;
+    async ObtenerPosicion(nombre, titulo) {
+        var res = await this.Obtener(nombre);
+        var posicion = res.data.find(x => slugify(x.Titulo) == titulo.toLowerCase());
+        res.data = posicion ? posicion : [];
+        return res;
     }
 }
 
