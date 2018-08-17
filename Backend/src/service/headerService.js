@@ -7,13 +7,14 @@ const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 class Header {
     Obtener(success, error) {
         try {
-            var header = cache.get("header", true)
+            var header = cache.get("header", true);
+            success(header);
         }
         catch (err) {
             axios.get(`${config.CMS}/header`)
                 .then((response) => {
                     cache.set("header", response.data, config.CACHE_HEADER)
-                    return response.data;
+                    success(response.data);
                 })
                 .catch((err) => {
                     error(err);
