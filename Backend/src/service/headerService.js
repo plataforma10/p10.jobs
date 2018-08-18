@@ -2,22 +2,33 @@ var axios = require('axios');
 var config = require('../settings/configuracion').Obtener(process.env.NODE_ENV);
 var slugify = require('../helpers/slugify');
 var NodeCache = require("node-cache");
+var headerMapper = require("../mappers/headerMapper");
 const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 class Header {
-    Obtener(success, error) {
+    Obtener() {
         try {
             var header = cache.get("header", true);
-            success(header);
+            return {
+                status: 200,
+                data: header
+            };
         }
         catch (err) {
-            axios.get(`${config.CMS}/header`)
+            return axios.get(`${config.CMS}/header`)
                 .then((response) => {
-                    cache.set("header", response.data, config.CACHE_HEADER)
-                    success(response.data);
+                    var header = response.data.map(function (header) {
+                        return headerMapper.MapearHeader(header, config.CMS);
+                    });
+                    cache.set("header", header, config.CACHE_HEADER)
+                    return {
+                        status: 200,
+                        data: header
+                    };
                 })
                 .catch((err) => {
-                    error(err);
+                    err.data = [];
+                    return err;
                 });
         }
     }
