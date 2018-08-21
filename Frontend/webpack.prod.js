@@ -4,6 +4,7 @@ var CompressionPlugin = require("compression-webpack-plugin")
 var common = require('./webpack.common.js');
 
 module.exports = merge(common, {
+	mode: 'production',
   plugins: [
     new UglifyJSPlugin(),
     new CompressionPlugin({

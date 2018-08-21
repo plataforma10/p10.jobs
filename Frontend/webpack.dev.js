@@ -4,7 +4,7 @@ var Dotenv = require('dotenv-webpack');
 
 module.exports = merge(common, {
 	mode: 'development',
-	watch: true,
+	watch: false,
 	devServer: {
 		historyApiFallback: true,
 	},
