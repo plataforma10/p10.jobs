@@ -11,9 +11,6 @@ const socialIconStyle = {
     linkedin: {
         color: "#007bb6"
     },
-    instagram: {
-        color: "#000"
-    },
     icon: {
         display: "inline-flex",
         alignSelf: "center",
