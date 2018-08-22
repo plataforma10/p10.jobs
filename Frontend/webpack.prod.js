@@ -2,6 +2,7 @@ var merge = require('webpack-merge');
 var UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 var CompressionPlugin = require("compression-webpack-plugin")
 var common = require('./webpack.common.js');
+var path = require('path');
 
 module.exports = merge(common, {
 	mode: 'production',
