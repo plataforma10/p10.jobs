@@ -5,9 +5,9 @@ import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import { List, ListItem, withStyles } from "@material-ui/core";
+import SocialIcon from "../iconos/SocialIcon.jsx";
 
 // @material-ui/icons
-import Favorite from "@material-ui/icons/Favorite";
 import footerStyle from "../../assets/styles/components/footerStyle.jsx";
 
 class Footer extends Component {
@@ -28,26 +28,31 @@ class Footer extends Component {
           <div className={classes.left}>
             <List className={classes.list}>
               <ListItem className={classes.inlineBlock}>
-                <a
-                  href="/"
-                  className={classes.block}
-                >
-                  About us
+                <a href="/" className={classes.block}>
+                  Home
                 </a>
               </ListItem>
               <ListItem className={classes.inlineBlock}>
-                <a
-                  href="/"
-                  className={classes.block}
-                >
+                <a href="https://www.plataforma10.com.ar/blog" className={classes.block}>
                   Blog
                 </a>
               </ListItem>
             </List>
           </div>
           <div className={classes.right}>
-            &copy; {1900 + new Date().getYear()} , made with{" "}
-            <Favorite className={classes.icon} />
+          <List className={classes.list}>
+              <ListItem className={classes.inlineBlock}>
+                <span className={classes.block}> Copyright &copy; {1900 + new Date().getYear()} Plataforma 10 </span>
+              </ListItem>
+              <ListItem className={classes.inlineBlock}>
+                <span className={classes.icon}>
+                  <SocialIcon icon="facebook" href="http://www.google.com.ar" tarjetBlanck/>
+                  <SocialIcon icon="google" />
+                  <SocialIcon icon="twitter" />
+                  <SocialIcon icon="linkedin" />
+                </span>
+              </ListItem>
+            </List>
           </div>
         </div>
       </footer>

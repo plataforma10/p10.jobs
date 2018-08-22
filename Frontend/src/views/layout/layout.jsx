@@ -9,7 +9,7 @@ import Footer from '../../components/footer/Footer.jsx';
 import logo from "../../assets/img/logoP10.jpg";
 import imgParalax from "../../assets/img/bg4.jpg";
 import axios from 'axios';
-import NotMatch from '../../components/notMatch/NotMacth.jsx'
+import SocialIcon from "../../components/iconos/SocialIcon.jsx";
 
 // Estilos
 import estilos from '../../assets/styles/views/layout/layoutStyle.jsx';
@@ -20,8 +20,7 @@ class Layout extends Component {
         this.state = {
             Titulo: "Plataforma 10 Jobs",
             Descripcion: "Tu oprtunidad de empleo",
-            Imagen: `/${imgParalax}`,
-            NoEncontrado: false
+            Imagen: `/${imgParalax}`
         }
         this.componentWillMount = this.componentWillMount.bind(this);
     }
@@ -34,20 +33,11 @@ class Layout extends Component {
                     Descripcion: res.data[0].Descripcion,
                     Imagen: res.data[0].Imagen
                 });    
-            })
-            .catch(() => {
-                this.setState({
-                    NoEncontrado: true
-                });
             });    
     }
 
     render() {
         const { classes, children, ...rest } = this.props;
-
-        if (this.state.NoEncontrado) {
-          return <NotMatch/>;
-        }
 
         return (
             <div>
@@ -64,6 +54,12 @@ class Layout extends Component {
                                     <h3 className={classes.subtitle}>
                                         {this.state.Descripcion}
                                     </h3>
+                                    <span className={classes.icon}>
+                                        <SocialIcon icon="facebook" href="http://www.google.com.ar" tarjetBlanck/>
+                                        <SocialIcon icon="google" />
+                                        <SocialIcon icon="twitter" />
+                                        <SocialIcon icon="linkedin" />
+                                    </span>
                                 </div>
                             </GridItem>
                         </GridContainer>
