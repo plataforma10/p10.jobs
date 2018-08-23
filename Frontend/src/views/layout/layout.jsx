@@ -7,28 +7,59 @@ import GridContainer from '../../components/grid/gridContainer.jsx';
 import GridItem from '../../components/grid/gridItem.jsx';
 import Footer from '../../components/footer/Footer.jsx';
 import logo from "../../assets/img/logoP10.jpg";
-import imgaenParalax from "../../assets/img/bg4.jpg";
+import imgParalax from "../../assets/img/bg4.jpg";
+import axios from 'axios';
+import SocialIcon from "../../components/iconos/SocialIcon.jsx";
+
 // Estilos
 import estilos from '../../assets/styles/views/layout/layoutStyle.jsx';
 
 class Layout extends Component {
+    constructor(){
+        super();
+        this.state = {
+            Titulo: "Plataforma 10 Jobs",
+            Descripcion: "Tu oprtunidad de empleo",
+            Imagen: `/${imgParalax}`
+        }
+        this.componentWillMount = this.componentWillMount.bind(this);
+    }
+
+    componentWillMount() {
+        axios.get(`${process.env.HOST_BACK}/header`)
+            .then((res) => { 
+                this.setState({
+                    Titulo: res.data[0].Titulo,
+                    Descripcion: res.data[0].Descripcion,
+                    Imagen: res.data[0].Imagen
+                });    
+            });    
+    }
+
     render() {
         const { classes, children, ...rest } = this.props;
+
         return (
             <div>
                 <Header brand="Plataforma 10" fixed color="transparent"
                     changeColorOnScroll={{ height: 400, color: "naranja" }}
                     srcLogo={`/${logo}`}
                     {...rest} />
-                <Parallax image={`/${imgaenParalax}`}>
+                <Parallax image={`${this.state.Imagen}`}>
                     <div className={classes.container}>
                         <GridContainer>
                             <GridItem>
                                 <div className={classes.brand}>
-                                    <h1 className={classes.title}>Plataforma 10 Jobs.</h1>
+                                    <h1 className={classes.title}>{this.state.Titulo}</h1>
                                     <h3 className={classes.subtitle}>
-                                        Tu oportunidad de empleo
+                                        {this.state.Descripcion}
                                     </h3>
+                                    <span className={classes.icon}>
+                                        <SocialIcon icon="facebook" href="http://www.google.com.ar" tarjetBlanck/>
+                                        <SocialIcon icon="google" />
+                                        <SocialIcon icon="twitter" />
+                                        <SocialIcon icon="linkedin" />
+                                    </span>
                                 </div>
                             </GridItem>
                         </GridContainer>

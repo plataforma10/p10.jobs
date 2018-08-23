@@ -1,15 +1,11 @@
 var router = require("express").Router();
-var headerService = require('../service/headerService')
+var headerService = require('../service/headerService');
+var success = require('../helpers/responseHelper');
 
-router.get('/', function (req, res, next) {
-    headerService.Obtener(
-        (header) => {
-            if (header) {
-                res.json(header);
-                return;
-            }
-            next();
-        }, next);
+router.get('/', async function (req, res, next) {
+    var header = await headerService.Obtener();
+
+    success(header, res, next);
 });
 
 module.exports = router;
