@@ -4,7 +4,6 @@ import { primaryColor } from "../variables/colores.jsx";
 const footerStyle = {
   block: {
     color: "inherit",
-    padding: "0.9375rem",
     fontWeight: "500",
     fontSize: "12px",
     textTransform: "uppercase",
@@ -14,13 +13,12 @@ const footerStyle = {
     display: "block"
   },
   left: {
-    float: "left!important",
+    float: "left",
     display: "block"
   },
   right: {
-    padding: "15px 0",
-    margin: "0",
-    float: "right!important"
+    float: "right",
+    display: "block"
   },
   footer: {
     padding: "0.9375rem 0",
@@ -46,15 +44,14 @@ const footerStyle = {
     marginTop: "0"
   },
   inlineBlock: {
+    verticalAlign: "middle",
     display: "inline-block",
-    padding: "0px",
+    paddingLeft: "7px",
+    paddingRight: "7px",
     width: "auto"
   },
   icon: {
-    width: "18px",
-    height: "18px",
-    position: "relative",
-    top: "3px"
+    fontSize: "24px"
   }
 };
 
