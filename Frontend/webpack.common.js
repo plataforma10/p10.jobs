@@ -3,10 +3,11 @@ var path = require('path');
 
 module.exports = {
     entry: './src/index.jsx',
-    output: {
-        path: path.resolve(__dirname, 'public'),
-        filename: 'app.min.jsgz'
-    },
+	output: {
+		path: path.resolve(__dirname, 'public/'),
+		filename: 'app.min.jsgz',
+		publicPath: 'public/'
+	},
     resolve: {
         extensions: ['.js', '.jsx', '.scss']
     },
@@ -31,15 +32,10 @@ module.exports = {
             ]
         },
         {
-            test: /.(png|jpg|jpeg|gif)$/,
+            test: /.(png|jpg|jpeg|gif|svg)$/,
             exclude: /node_modules/,
             loader: 'url-loader?limit=1024&name=img/[hash].[ext]'
         },
-		{
-			test: /\.svg$/,
-            exclude: /node_modules/,
-			loader: 'file-loader?limit=1024&name=img/[hash].[ext]'
-		},
         {
             test: /.(woff|woff2|ttf|eot)$/,
             exclude: /node_modules/,
@@ -47,6 +43,8 @@ module.exports = {
         }
     ]},
     plugins: [
-        new copy([{ context: './src', from: 'index.html', to: '' }])
+        new copy([{ context: './src', from: 'index.html', to: '' },
+        { context: './src', from: 'favicon.ico', to: '' },
+        { context: './src', from: 'manifest.json', to: '' }])
     ]
 }
