@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/posicion",
+      "handler": "Posicion.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/posicion/count",
+      "handler": "Posicion.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/posicion/:_id",
+      "handler": "Posicion.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/posicion",
+      "handler": "Posicion.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/posicion/:_id",
+      "handler": "Posicion.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/posicion/:_id",
+      "handler": "Posicion.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
