@@ -1,0 +1,11 @@
+FROM node:8
+
+ENV NODE_ENV dev
+RUN mkdir -p /usr/app/back
+WORKDIR /usr/app/back
+
+COPY package.json /usr/app/back
+RUN cd /usr/app/back && npm install
+
+COPY . /usr/app/back
+CMD npm start
