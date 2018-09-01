@@ -1,15 +1,44 @@
-version: '3'
+version: "3.3"
 
 services:
   web:
     build: ./Frontend
     ports:
       - 8080:8080
+    links: 
+      - back:backapi
     depends_on: 
       - back
+    environment: 
+      HOST_BACK: backapi
   back:
     build: ./Backend
     ports:
       - 8081:8081
-    environment: 
-      STRAPI: http://dev06:1337
+    links: 
+      - cms:cmshost
+    depends_on: 
+      - cms
+    environment:
+      CMS: http://cmshost:1337
+      PORT: 8081
+  cms:
+    build: ./cms
+    ports:
+      - "1337:1337"
+    links: 
+      - mongo:mongodb
+    depends_on: 
+      - mongo
+    environment:
+      WAIT_HOSTS: mongo:27017
+      DATABASE_HOST: mongodb
+      DATABASE_PORT: 27017
+    
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
