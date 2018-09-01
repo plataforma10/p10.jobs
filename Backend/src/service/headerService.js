@@ -1,5 +1,5 @@
 var axios = require('axios');
-var config = require('../settings/configuracion').Obtener(process.env.NODE_ENV);
+var config = require('../settings/configuracion').Obtener();
 var NodeCache = require("node-cache");
 var headerMapper = require("../mappers/headerMapper");
 const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });

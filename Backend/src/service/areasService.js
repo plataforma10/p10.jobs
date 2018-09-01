@@ -1,5 +1,5 @@
 var axios = require('axios');
-var config = require('../settings/configuracion').Obtener(process.env.NODE_ENV);
+var config = require('../settings/configuracion').Obtener();
 var slugify = require('../helpers/slugify');
 var NodeCache = require("node-cache");
 var areaMapper = require('../mappers/areaMapper');
