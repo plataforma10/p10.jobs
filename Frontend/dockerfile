@@ -8,6 +8,6 @@ COPY public /usr/app/front/public
 COPY package.json /usr/app/front
 COPY server.js /usr/app/front
 
-RUN cd /usr/app/front && npm install
+RUN cd /usr/app/front && npm install --only=production
 
 CMD npm run server:prod
