@@ -1,6 +1,5 @@
 var axios = require('axios');
 var config = require('../settings/configuracion').Obtener();
-var slugify = require('../helpers/slugify');
 var NodeCache = require("node-cache");
 var areaMapper = require('../mappers/areaMapper');
 const cacheAreas = new NodeCache({ stdTTL: 100, checkperiod: 120 });
@@ -35,14 +34,14 @@ class Areas {
 
     async Obtener(nombre) {
         var res = await this.ObtenerTodas();
-        var area = res.data.find(x => slugify(x.Nombre) === nombre.toLowerCase());
+        var area = res.data.find(x => x.Path === nombre.toLowerCase());
         res.data = area ? area : [];
         return res;
     }
 
     async ObtenerPosicion(nombre, titulo) {
         var res = await this.Obtener(nombre);
-        var posicion = res.data.find(x => slugify(x.Titulo) == titulo.toLowerCase());
+        var posicion = res.data.Posiciones.find(x => x.Path == titulo.toLowerCase());
         res.data = posicion ? posicion : [];
         return res;
     }
