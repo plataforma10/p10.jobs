@@ -1,6 +1,6 @@
 {
   "_from": "strapi-plugin-upload@alpha",
-  "_id": "strapi-plugin-upload@3.0.0-alpha.13.0.1",
+  "_id": "strapi-plugin-upload@3.0.0-alpha.14",
   "_inBundle": false,
   "_integrity": "sha512-5NweP4gIno8CAcgS1oBsxM0LCSuUU5c/w/bSoZbNlvTzIRgr32vW6WxdRpWlSMQbVHgOoQPu7Kn07F3juF6KHg==",
   "_location": "/strapi-plugin-upload",
@@ -18,7 +18,7 @@
   "_requiredBy": [
     "#USER"
   ],
-  "_resolved": "https://registry.npmjs.org/strapi-plugin-upload/-/strapi-plugin-upload-3.0.0-alpha.13.0.1.tgz",
+  "_resolved": "https://registry.npmjs.org/strapi-plugin-upload/-/strapi-plugin-upload-3.0.0-alpha.14.tgz",
   "_shasum": "95fa2d747bf5d709311afc0e75032a902c12e07e",
   "_spec": "strapi-plugin-upload@alpha",
   "_where": "D:\\P10JOBS\\cms",
@@ -28,14 +28,14 @@
   "bundleDependencies": false,
   "dependencies": {
     "react-copy-to-clipboard": "^5.0.1",
-    "strapi-upload-local": "3.0.0-alpha.13.0.1",
+    "strapi-upload-local": "3.0.0-alpha.14",
     "stream-to-array": "^2.3.0",
     "uuid": "^3.2.1"
   },
   "deprecated": false,
   "description": "This is the description of the plugin.",
   "devDependencies": {
-    "strapi-helper-plugin": "3.0.0-alpha.13.0.1"
+    "strapi-helper-plugin": "3.0.0-alpha.14"
   },
   "engines": {
     "node": ">= 7.0.0",
@@ -67,5 +67,5 @@
     "icon": "cloud-upload",
     "description": "Description of upload plugin."
   },
-  "version": "3.0.0-alpha.13.0.1"
+  "version": "3.0.0-alpha.14"
 }
