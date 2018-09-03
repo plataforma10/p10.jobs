@@ -23,7 +23,8 @@ class AreaMapper {
             Titulo: posicion.Titulo,
             Path: slugify(posicion.Titulo),
             Descripcion: posicion.Descripcion,
-            FechaCreacion: posicion.createdAt
+            FechaCreacion: posicion.createdAt,
+            Localidad: posicion.Localidad
         }
     }
 }
