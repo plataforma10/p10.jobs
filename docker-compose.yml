@@ -1,16 +1,16 @@
 version: "3.3"
 
 services:
-  #web:
-  #  build: ./Frontend
-  #  ports:
-  #    - 8080:8080
-  #  links: 
-  #    - back:backapi
-  #  depends_on: 
-  #    - back
-  #  environment: 
-  #    HOST_BACK: backapi
+  web:
+    build: ./Frontend
+    ports:
+      - 8080:8080
+    links: 
+      - back:backapi
+    depends_on: 
+      - back
+    environment: 
+      HOST_BACK: backapi
   back:
     build: ./Backend
     ports:
@@ -41,8 +41,7 @@ services:
         source: "./cms/api"
         target: /usr/src/api/strapi-app/api
     depends_on:
-      - mongo
-    
+      - mongo    
   mongo:
     container_name: mongo
     image: mongo
@@ -50,4 +49,9 @@ services:
       - MONGO_INITDB_DATABASE=strapi
     ports:
       - "27017:27017"
+    volumes:
+      - mongodb:/data/db
     restart: always
+    
+volumes:
+  mongodb:
