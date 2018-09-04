@@ -1,14 +1,17 @@
 FROM node:9.11.1-alpine
 
-ENV NODE_ENV development
-RUN mkdir -p /usr/src/cms
-WORKDIR /usr/src/cms
+WORKDIR /usr/src/api
 
-COPY . /usr/src/cms
 RUN npm install -g strapi@3.0.0-alpha.14
-RUN cd /usr/src/cms && npm install
 
-ADD https://github.com/ufoscout/docker-compose-wait/releases/download/2.2.1/wait /wait
-RUN chmod +x /wait
+COPY strapi.sh /
+COPY api /usr/src/api/files
+RUN chmod +x /strapi.sh
 
-CMD /wait && strapi start
+EXPOSE 1337
+
+COPY healthcheck.js /
+HEALTHCHECK --interval=15s --timeout=5s --start-period=30s \
+      CMD node /usr/src/api/healthcheck.js
+
+CMD ["/strapi.sh"]

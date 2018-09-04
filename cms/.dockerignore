@@ -1,10 +1,8 @@
-node_modules
-npm-debug.log
-Dockerfile*
-docker-compose*
-.dockerignore
+# https://docs.docker.com/engine/reference/builder/#dockerignore-file
+# Don't send the following files to the docker daemon as the build context.
+
 .git
-.gitignore
+.gitattributes
+.travis.yml
 README.md
-LICENSE
-.vscode
+docker-compose.yml
