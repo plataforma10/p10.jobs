@@ -4,7 +4,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Layout from '../layout/layout.jsx';
 import GridContainer from '../../components/grid/gridContainer.jsx';
 import GridItem from '../../components/grid/gridItem.jsx';
-
+import AreasSeccion from './secciones/areasSeccion.jsx';
 // Estilos
 import estilos from '../../assets/styles/views/home/homeStyle.jsx';
 
@@ -18,6 +18,7 @@ class Home extends Component {
               <div className={classes.container}>
                 <div className={classes.title}>
                   <h1>Home</h1>
+                    <AreasSeccion />
                 </div>
               </div>
             </GridItem>
