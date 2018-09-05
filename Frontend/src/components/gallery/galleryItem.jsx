@@ -3,36 +3,30 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { withStyles } from '@material-ui/core/styles';
+import GalerryItemStyle from '../../assets/styles/components/galleryItemStyle';
 
-const Estilos = {
-    icon: {
-        color: 'rgba(255, 255, 255, 0.54)',
-    }
-}
 
-class GridListItem extends Component {
+class GalleryItem extends Component {
     constructor(){
         super();
     }
 
     render() {
         const { classes, element } = this.props;
+        const { Header, Nombre, Descripcion } = element;
 
         return(
-            <div>
-                <img src={element.img} alt={element.title} />
-                <GridListTileBar
-                title={element.title}
-                subtitle={<span>{element.detalle}</span>}
-                actionIcon={
-                    <IconButton className={classes.icon}>
-                    <InfoIcon />
-                    </IconButton>
-                }
+            <div className={classes.contenedor} style={ Header ? { backgroundImage: `url(${Header.Imagen})` } : {}}>
+                <GridListTileBar title={Nombre} subtitle={<span>{Descripcion}</span>}
+                    actionIcon={
+                        <IconButton className={classes.icon}>
+                            <InfoIcon />
+                        </IconButton>
+                    }
                 />
             </div>
         );
     };
 }
 
-export default withStyles(Estilos)(GridListItem);
+export default withStyles(GalerryItemStyle)(GalleryItem);

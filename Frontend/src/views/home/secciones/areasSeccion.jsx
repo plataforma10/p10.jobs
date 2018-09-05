@@ -13,19 +13,20 @@ class AreasSeccion extends Component {
             areas: [],
             error: false
         }
-        this.componentWillMount = this.componentWillMount.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
-    componentWillMount(){
+    componentDidMount(){
         axios
             .create({
               baseURL: `${process.env.HOST_BACK}`,
               timeout: 10000
             })
             .get("/area")
-            .then((res) => { 
+            .then((res) => {
+                console.log(res.data); 
                 this.setState({
-                    areas: []//res.data
+                    areas: res.data
                 });    
             })
             .catch((err) =>{
@@ -42,7 +43,7 @@ class AreasSeccion extends Component {
               this.state.areas.length > 0 ? 
               (<Gallery>
                 {this.state.areas.map(item => (
-                    <GridListTile key={item.img} cols="1">
+                    <GridListTile key={item.Path} cols={1}>
                         <GalleryItem element={item} />
                     </GridListTile>
                 ))}

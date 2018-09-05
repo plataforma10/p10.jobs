@@ -4,9 +4,9 @@ import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import ListSubheader from '@material-ui/core/ListSubheader';
-import TileBarGridListStyle from '../../assets/styles/components/tileBarGridListStyle';
+import GalleryStyle from '../../assets/styles/components/galleryStyle';
 
-class TilebarGridList extends Component {
+class Gallery extends Component {
     constructor(){
         super();
     }
@@ -26,8 +26,8 @@ class TilebarGridList extends Component {
     };
   }
   
-  TilebarGridList.propTypes = {
+  Gallery.propTypes = {
     classes: PropTypes.object.isRequired,
   };
   
-  export default withStyles(TileBarGridListStyle)(TilebarGridList);
+  export default withStyles(GalleryStyle)(Gallery);
