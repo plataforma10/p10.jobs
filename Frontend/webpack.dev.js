@@ -1,6 +1,5 @@
 var merge = require('webpack-merge');
 var common = require('./webpack.common.js');
-var Dotenv = require('dotenv-webpack');
 var path = require('path');
 
 module.exports = merge(common, {
@@ -13,8 +12,5 @@ module.exports = merge(common, {
 		publicPath: '/public/',
 		compress: true,
 		open: true
-	},
-	plugins: [
-		new Dotenv({ path: './.env', safe: true})		
-	]
+	}
 });

@@ -1,5 +1,6 @@
 var copy = require('copy-webpack-plugin');
 var path = require('path');
+var Dotenv = require('dotenv-webpack');
 
 module.exports = {
     entry: './src/index.jsx',
@@ -45,6 +46,7 @@ module.exports = {
     plugins: [
         new copy([{ context: './src', from: 'index.html', to: '' },
         { context: './src', from: 'favicon.ico', to: '' },
-        { context: './src', from: 'manifest.json', to: '' }])
+        { context: './src', from: 'manifest.json', to: '' }]),
+        new Dotenv({ path: './.env', safe: true})	
     ]
 }

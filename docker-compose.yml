@@ -1,0 +1,55 @@
+version: "3.3"
+
+services:
+  web:
+    build: ./Frontend
+    ports:
+      - 8080:8080
+    links: 
+      - back:host-back
+    depends_on: 
+      - back
+  back:
+    build: ./Backend
+    ports:
+      - 8081:8081
+    links: 
+      - cms:cmshost
+    depends_on: 
+      - cms
+    environment:
+      CMS: http://cmshost:1337
+      PORT: 8081
+  cms:
+    build: ./cms
+    image: strapi/strapi
+    environment:
+      - APP_NAME=strapi-app
+      - DATABASE_CLIENT=mongo
+      - DATABASE_HOST=mongo
+      - DATABASE_PORT=27017
+      - DATABASE_NAME=strapi
+      - DATABASE_USERNAME=
+      - DATABASE_PASSWORD=
+      - HOST=localhost
+    ports:
+      - 1337:1337
+    volumes:
+      - type: bind
+        source: "./cms/api"
+        target: /usr/src/api/strapi-app/api
+    depends_on:
+      - mongo    
+  mongo:
+    container_name: mongo
+    image: mongo
+    environment:
+      - MONGO_INITDB_DATABASE=strapi
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb:/data/db
+    restart: always
+    
+volumes:
+  mongodb:
