@@ -1,13 +1,11 @@
 FROM node:8
 
-ENV NODE_ENV dev
-RUN mkdir -p /usr/app/front
-WORKDIR /usr/app/front
+WORKDIR /usr/app
+COPY package.json /usr/app/
+RUN npm install
 
-COPY public /usr/app/front/public
-COPY package.json /usr/app/front
-COPY server.js /usr/app/front
+COPY . /usr/app/
 
-RUN cd /usr/app/front && npm install --only=production
+RUN npm run build:prod
 
 CMD npm run server:prod

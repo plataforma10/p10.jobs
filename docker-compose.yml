@@ -6,11 +6,9 @@ services:
     ports:
       - 8080:8080
     links: 
-      - back:backapi
+      - back:host-back
     depends_on: 
       - back
-    environment: 
-      HOST_BACK: backapi
   back:
     build: ./Backend
     ports:
