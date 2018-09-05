@@ -1,4 +1,4 @@
-import Home from "../views/Home/Home.jsx";
+import Home from "../views/home/home.jsx";
 import Area from "../views/area/area.jsx";
 import Posicion from "../views/posicion/posicion.jsx";
 import NotFound from "../views/notFound/NotFound.jsx";
