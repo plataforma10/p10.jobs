@@ -28,12 +28,17 @@ class Footer extends Component {
           <div className={classes.left}>
             <List className={classes.list}>
               <ListItem className={classes.inlineBlock}>
+                <a href="https://www.plataforma10.com.ar/" target="_blanck" className={classes.block}>
+                  Plataforma 10
+                </a>
+              </ListItem>
+              <ListItem className={classes.inlineBlock}>
                 <a href="/" className={classes.block}>
                   Home
                 </a>
               </ListItem>
               <ListItem className={classes.inlineBlock}>
-                <a href="https://www.plataforma10.com.ar/blog" className={classes.block}>
+                <a href="https://www.plataforma10.com.ar/blog"  target="_blanck" className={classes.block}>
                   Blog
                 </a>
               </ListItem>
