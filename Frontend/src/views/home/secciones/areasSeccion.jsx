@@ -1,107 +1,54 @@
 import React, { Component } from 'react';
 import GridListTile from '@material-ui/core/GridListTile';
-import TilebarGridList from '../../../components/gallery/tileBarGridList';
-import GridListItem from '../../../components/gallery/gridListItem';
+import Gallery from '../../../components/gallery/gallery';
+import GalleryItem from '../../../components/gallery/galleryItem';
 import axios from 'axios';
-
-const areas = [
-    {
-      img: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
-      title: 'Tecnologia',
-      detalle: 'Desarrollo de aplicaciones',
-      cols: 1,
-      featured: true,
-    },
-    {
-      img: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-      title: 'Comercial',
-      detalle: 'Area de ventas',
-      cols: 1,
-    }
-    ,
-    {
-      img: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-      title: 'Administracion',
-      detalle: 'Area contable',
-      cols: 1,
-    },
-    {
-      img: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-      title: 'Producto',
-      detalle: 'Area de negocios',
-      featured: true,
-    },
-    {
-      img: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-      title: 'Hats',
-      detalle: 'Hans',
-    },
-    {
-      img: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-      title: 'Honey',
-      detalle: 'fancycravel',
-    },
-    {
-      img: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-      title: 'Vegetables',
-      detalle: 'jill111',
-      cols: 2,
-    },
-    {
-      img: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
-      title: 'Water plant',
-      detalle: 'BkrmadtyaKarki',
-    },
-    {
-      img: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
-      title: 'Mushrooms',
-      detalle: 'PublicDomainPictures',
-    },
-    {
-      img: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
-      title: 'Olive oil',
-      detalle: 'congerdesign',
-    },
-    {
-      img: 'https://source.unsplash.com/epcsn8Ed8kY/600x799',
-      title: 'Sea star',
-      cols: 2,
-      detalle: '821292',
-    },
-    {
-      img: 'https://source.unsplash.com/2ShvY8Lf6l0/800x599',
-      title: 'Bike',
-      detalle: 'danfador',
-    }
-  ];
+import Cargando from '../../../components/cargando/cargando'
+import GridContainer from '../../../components/grid/gridContainer.jsx';
 
 class AreasSeccion extends Component { 
     constructor(){
         super();
         this.state = {
-            areas: []
+            areas: [],
+            error: false
         }
         this.componentWillMount = this.componentWillMount.bind(this);
     }
 
     componentWillMount(){
-        axios.get(`${process.env.HOST_BACK}/area`)
+        axios
+            .create({
+              baseURL: `${process.env.HOST_BACK}`,
+              timeout: 10000
+            })
+            .get("/area")
             .then((res) => { 
                 this.setState({
-                    areas: res.data
+                    areas: []//res.data
                 });    
+            })
+            .catch((err) =>{
+              this.setState({
+                error: true
+              })
             });
     }
 
     render(){
         return(
-            <TilebarGridList>
+          <GridContainer justify="center">
+            {
+              this.state.areas.length > 0 ? 
+              (<Gallery>
                 {this.state.areas.map(item => (
-                    <GridListTile key={item.img} cols={item.cols || 1}>
-                        <GridListItem element={item} />
+                    <GridListTile key={item.img} cols="1">
+                        <GalleryItem element={item} />
                     </GridListTile>
                 ))}
-            </TilebarGridList>
+                </Gallery>) : (<Cargando />)
+            }
+          </GridContainer>
         );
     };
 }

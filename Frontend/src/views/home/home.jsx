@@ -14,13 +14,10 @@ class Home extends Component {
       return (
         <Layout className={classes.main}>
           <GridContainer>
-            <GridItem>
-              <div className={classes.container}>
-                <div className={classes.title}>
-                  <h1>Home</h1>
+            <GridItem >
+                <div className={classes.container}>
                     <AreasSeccion />
                 </div>
-              </div>
             </GridItem>
           </GridContainer>
         </Layout>
