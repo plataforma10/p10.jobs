@@ -11,14 +11,14 @@ class Gallery extends Component {
         super();
     }
     render(){
-        const { classes, children } = this.props;
+        const { classes, children, titulo } = this.props;
 
         return (
           <div className={classes.root}>
             <GridList cellHeight={230} className={classes.gridList} cols={4}>
-              <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
-                <ListSubheader component="div">Areas</ListSubheader>
-              </GridListTile>
+              { titulo ? (<GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
+                <ListSubheader className={classes.titulo} component="h1">{ titulo }</ListSubheader>
+              </GridListTile>) : null}              
               { children }
             </GridList>
           </div>
@@ -28,6 +28,7 @@ class Gallery extends Component {
   
   Gallery.propTypes = {
     classes: PropTypes.object.isRequired,
+    titulo: PropTypes.string
   };
   
   export default withStyles(GalleryStyle)(Gallery);

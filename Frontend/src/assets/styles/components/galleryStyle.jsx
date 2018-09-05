@@ -7,8 +7,12 @@ const TileBarGridListStyle = theme => ({
     backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    width: 1200,
-    /*height: 600,*/
+    width: 1200
+  },
+  titulo: {
+    fontSize: "3.3125rem",
+    paddingLeft: "16px",
+    paddingRight: "16px"
   }
 });
 
