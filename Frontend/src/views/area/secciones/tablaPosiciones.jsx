@@ -1,26 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
-// @material-ui/core components
-import IconButton from "@material-ui/core/IconButton";
-import Info from "@material-ui/icons/Info";
-import Tooltip from "@material-ui/core/Tooltip";
 // Componentes
 import GridItem from "../../../components/grid/gridItem.jsx";
 import GridContainer from "../../../components/grid/gridContainer.jsx";
-import Table from "../../../components/table/table.jsx";
+import CustomTable from "../../../components/table/customTable";
 import Card from "../../../components/card/card.jsx";
 import CardBody from "../../../components/card/cardBody.jsx";
 import SnackbarContent from '../../../components/snackbar/snackbarContent.jsx';
+import TableItemPosicion from '../../../components/table/tableItemPosicion.jsx';
 
 class TablaPosiciones extends Component {
     constructor() {
         super();
         this.state = {
             AreaSinPosiciones: false,
-            Posiciones: new Array(),
-            Redireccion: false
+            Posiciones: []
         };
         this.componentWillMount = this.componentWillMount.bind(this);
     }
@@ -31,22 +26,12 @@ class TablaPosiciones extends Component {
             .then((res) => {
                 this.setState({
                     Posiciones: res.data.Posiciones.map(function (pos) {
-                        return [
-                            `${pos.Titulo}`,
-                            `${pos.Localidad}`,
-                            `${moment(pos.FechaCreacion).locale("es").format("DD-MMMM-YYYY")}`,
-                            <Tooltip
-                                id="tooltip-top"
-                                title="Detalle"
-                                placement="top"
-                            >
-                                <Link to={`/area/posicion/${pos.Titulo}`}>
-                                    <IconButton>
-                                        <Info />
-                                    </IconButton>
-                                </Link>
-                            </Tooltip>
-                        ]
+                        return {
+                            Titulo: `${pos.Titulo}`,
+                            Localidad: `${pos.Localidad}`,
+                            FechaCreacion: `${moment(pos.FechaCreacion).locale("es").format("DD-MMMM-YYYY")}`,
+                            Path: `/area/posicion/${pos.Titulo}`
+                        }
                     })
                 });
             })
@@ -58,10 +43,6 @@ class TablaPosiciones extends Component {
     }
 
     render() {
-        if (!this.state.Posiciones) {
-            return <p>Buscar loader</p>;
-        }
-
         if (this.state.AreaSinPosiciones) {
             return (
                 <GridContainer>
@@ -70,9 +51,8 @@ class TablaPosiciones extends Component {
                             message={
                                 <span>
                                     No se han cargado posiciones para el área seleccionada.
-                                    </span>
+                                </span>
                             }
-                            close
                             color="danger"
                             icon="info_outline"
                         />
@@ -85,11 +65,15 @@ class TablaPosiciones extends Component {
                 <GridItem xs={12} sm={12} md={12}>
                     <Card>
                         <CardBody>
-                            <Table
-                                tableHeaderColor="warning"
-                                tableHead={["Puesto", "Localidad", "Fecha", ""]}
-                                tableData={this.state.Posiciones}
-                            />
+                            <CustomTable
+                                tableHeaderColor="info"
+                                tableHead={["Puesto", "Localidad", "Fecha", ""]}>
+                                {this.state.Posiciones.map((prop, key) => {
+                                        return (
+                                            <TableItemPosicion key={key} posicion={prop} />
+                                        )
+                                    })}                                
+                            </CustomTable>
                         </CardBody>
                         {/* Acá va la paginación *
                          <CardFooter>
