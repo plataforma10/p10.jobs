@@ -1,0 +1,24 @@
+{
+  "connection": "default",
+  "collectionName": "posicion",
+  "info": {
+    "name": "posicion",
+    "description": "Informacion relativa a la propuesta, requisitos y desafio"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "Titulo": {
+      "type": "string"
+    },
+    "Descripcion": {
+      "type": "text",
+      "required": true
+    },
+    "Area": {
+      "model": "area",
+      "via": "Posiciones"
+    }
+  }
+}

@@ -17,6 +17,9 @@ const layoutStyle = {
         fontSize: "1.313rem",
         maxWidth: "500px",
         margin: "10px 0 0"
+    },
+    icon: {
+        fontSize: "32px"
     }
 }
 
