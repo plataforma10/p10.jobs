@@ -1,12 +1,6 @@
-import {
-    defaultFont,
-    primaryBoxShadow,
-    infoBoxShadow,
-    successBoxShadow,
-    warningBoxShadow,
-    dangerBoxShadow,
-    container
-} from "../material-dashboard-react.jsx";
+import { primaryBoxShadow, infoBoxShadow, successBoxShadow,
+    warningBoxShadow, dangerBoxShadow } from "../variables/sombras.jsx";
+import { defaultFont, container } from '../base.jsx';
 
 const snackbarContentStyle = {
     root: {

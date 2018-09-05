@@ -5,7 +5,7 @@ import {
   infoCardHeader,
   primaryCardHeader,
   roseCardHeader
-} from "../material-dashboard-react.jsx";
+} from "../variables/card.jsx";
 const cardHeaderStyle = {
   cardHeader: {
     padding: "0.75rem 1.25rem",
