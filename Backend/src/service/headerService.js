@@ -5,38 +5,25 @@ var headerMapper = require("../mappers/headerMapper");
 const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 class Header {
-    Obtener() {
+    async Obtener() {
         try {
-            var header = cache.get("header", true);
-            return {
-                status: 200,
-                data: header
-            };
+            var header = cache.get("headers", true);
+            return header;
         }
         catch (err) {
-            return axios.get(`${config.CMS}/header`)
-                .then((response) => {
-                    var header = response.data.map(function (header) {
-                        return headerMapper.MapearHeader(header, config.UPLOAD);
-                    });
-                    cache.set("header", header, config.CACHE_HEADER)
-                    return {
-                        status: 200,
-                        data: header
-                    };
-                })
-                .catch((err) => {
-                    err.data = [];
-                    return err;
-                });
+            var res = await axios.get(`${config.CMS}/header`);
+            var headers = res.data.map(function (header) {
+                return headerMapper.MapearHeader(header, config.UPLOAD);
+            });
+            cache.set("headers", headers, config.CACHE_HEADER)
+            return headers;
         }
     }
 
     async ObtenerHome() {
-        var res = await this.Obtener();
-        var header = res.data.find(x => x.Seccion === "Home");
-        res.data = header;
-        return res;
+        var headers = await this.Obtener();
+        var header = headers.find(x => x.Seccion === "Home");
+        return header;
     }
 }
 

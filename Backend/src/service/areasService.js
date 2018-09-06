@@ -6,77 +6,50 @@ const cacheAreas = new NodeCache({ stdTTL: 100, checkperiod: 120 });
 
 class Areas {
 
-    ObtenerTodas() {
+    async ObtenerTodas() {
         try {
             var areas = cacheAreas.get("areas", true);
-            return {
-                status: 200,
-                data: areas
-            };
+            return areas;
         } catch (err) {
-            return axios.get(`${config.CMS}/area`)
-                .then((response) => {
-                    var areas = response.data.map(function (area) {
-                        return areaMapper.MapearArea(area);
-                    });                 
-                    cacheAreas.set("areas", areas, config.CACHE_AREAS)
-                    return {
-                        status: 200,
-                        data: areas
-                    };
-                })
-                .catch((err) => {
-                    err.data = [];
-                    return err;
-                });
+            var res = await axios.get(`${config.CMS}/area`);
+            var areas = res.data.map(function (area) {
+                return areaMapper.MapearArea(area);
+            });   
+            cacheAreas.set("areas", areas, config.CACHE_AREAS)  
+            return areas;   
         }
     }
 
     async Obtener(nombre) {
-        var res = await this.ObtenerTodas();
-        var area = res.data.find(x => x.Path === nombre.toLowerCase());
-        res.data = area ? area : [];
-        return res;
+        var areas = await this.ObtenerTodas();
+        return areas.find(x => x.Path === nombre.toLowerCase());
     }
 
     ObtenerTodasPosiciones() {
         try {
             var posiciones = cacheAreas.get("posiciones", true);
-            return {
-                status: 200,
-                data: posiciones
-            };
+            return posiciones;
         } catch (err) {
-            return axios.get(`${config.CMS}/area`)
-                .then((response) => {
-                    var posiciones = response.data.map(function (area) {
-                        return areaMapper.MapearPosiciones(area);
-                    });                 
-                    cacheAreas.set("posiciones", posiciones, config.CACHE_AREAS)
-                    return {
-                        status: 200,
-                        data: posiciones
-                    };
-                })
-                .catch((err) => {
-                    err.data = [];
-                    return err;
-                });
+            var areas = axios.get(`${config.CMS}/area`);
+            var posiciones = areas.map(function (area) {
+                return areaMapper.MapearPosiciones(area);
+            }); 
+
+            cacheAreas.set("posiciones", posiciones, config.CACHE_AREAS)
+            return posiciones;
         }
     }
     
     async ObtenerPosicionesArea(nombre) {
-        var res = await this.ObtenerTodasPosiciones();
-        var area = res.data.find(x => x.PathArea == nombre.toLowerCase());
-        res.data = area ? area.Posiciones : [];
-        return res;
+        var areas = await this.ObtenerTodasPosiciones();
+        var area = areas.find(x => x.PathArea == nombre.toLowerCase());
+        return area.Posiciones;
     } 
 
     async ObtenerPosicion(nombre, titulo) {
-        var res = await this.ObtenerPosicionesArea(nombre);
-        var posicion = res.data.find(x => x.Path == titulo.toLowerCase());
-        res.data = posicion ? posicion : [];
-        return res;
+        var posiciones = await this.ObtenerPosicionesArea(nombre);
+        var posicion = posiciones.find(x => x.Path == titulo.toLowerCase());
+        return posicion;
     }
 }
 
