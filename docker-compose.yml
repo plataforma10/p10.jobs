@@ -20,6 +20,8 @@ services:
     environment:
       CMS: http://cmshost:1337
       PORT: 8081
+      CACHE_AREAS: 0
+      CACHE_HEADER: 0
   cms:
     build: ./cms
     image: strapi/strapi
@@ -38,6 +40,7 @@ services:
       - type: bind
         source: "./cms/api"
         target: /usr/src/api/strapi-app/api
+      - upload:/usr/src/api/strapi-app/public/uploads
     depends_on:
       - mongo    
   mongo:
@@ -53,3 +56,4 @@ services:
     
 volumes:
   mongodb:
+  upload:

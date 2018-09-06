@@ -30,7 +30,7 @@ class TablaPosiciones extends Component {
                             Titulo: `${pos.Titulo}`,
                             Localidad: `${pos.Localidad}`,
                             FechaCreacion: `${moment(pos.FechaCreacion).locale("es").format("DD-MMMM-YYYY")}`,
-                            Path: `/area/posicion/${pos.Titulo}`
+                            Path: `/area/${res.data.Path}/${pos.Path}`
                         }
                     })
                 });

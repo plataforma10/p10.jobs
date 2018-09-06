@@ -24,6 +24,10 @@
     },
     "Header": {
       "model": "header"
+    },
+    "SubTitulo": {
+      "default": "",
+      "type": "string"
     }
   }
 }

@@ -17,7 +17,7 @@ class Header {
             return axios.get(`${config.CMS}/header`)
                 .then((response) => {
                     var header = response.data.map(function (header) {
-                        return headerMapper.MapearHeader(header, config.CMS);
+                        return headerMapper.MapearHeader(header, config.UPLOAD);
                     });
                     cache.set("header", header, config.CACHE_HEADER)
                     return {
@@ -30,6 +30,13 @@ class Header {
                     return err;
                 });
         }
+    }
+
+    async ObtenerHome() {
+        var res = await this.Obtener();
+        var header = res.data.find(x => x.Seccion === "Home");
+        res.data = header;
+        return res;
     }
 }
 

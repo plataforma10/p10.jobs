@@ -26,18 +26,18 @@ class Layout extends Component {
     }
 
     componentWillMount() {
-        axios.get(`${process.env.HOST_BACK}/header`)
-            .then((res) => { 
-                this.setState({
-                    Titulo: res.data[0].Titulo,
-                    Descripcion: res.data[0].Descripcion,
-                    Imagen: res.data[0].Imagen
-                });    
+        axios.get(`${process.env.HOST_BACK}/header/Home`)
+        .then((res) => { 
+            this.setState({
+                Titulo: res.data.Titulo,
+                Descripcion: res.data.Descripcion,
+                Imagen: res.data.Imagen
             });    
+        });    
     }
 
     render() {
-        const { classes, children, ...rest } = this.props;
+        const { classes, children, header, ...rest } = this.props;
 
         return (
             <div>
@@ -45,14 +45,14 @@ class Layout extends Component {
                     changeColorOnScroll={{ height: 400, color: "naranja" }}
                     srcLogo={`/${logo}`}
                     {...rest} />
-                <Parallax image={`${this.state.Imagen}`}>
+                <Parallax image={`${header ? header.Imagen : this.state.Imagen }`}>
                     <div className={classes.container}>
                         <GridContainer>
                             <GridItem>
                                 <div className={classes.brand}>
-                                    <h1 className={classes.title}>{this.state.Titulo}</h1>
+                                    <h1 className={classes.title}>{header ? header.Titulo : this.state.Titulo}</h1>
                                     <h3 className={classes.subtitle}>
-                                        {this.state.Descripcion}
+                                        {header ? header.Descripcion : this.state.Descripcion}
                                     </h3>
                                     <span className={classes.icon}>
                                         <SocialIcon icon="facebook" href="http://www.google.com.ar" tarjetBlanck/>

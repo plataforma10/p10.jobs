@@ -4,6 +4,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import { withStyles } from '@material-ui/core/styles';
 import GalerryItemStyle from '../../assets/styles/components/galleryItemStyle';
+import { Link } from "react-router-dom";
 
 
 class GalleryItem extends Component {
@@ -13,15 +14,17 @@ class GalleryItem extends Component {
 
     render() {
         const { classes, element } = this.props;
-        const { Header, Nombre, Descripcion } = element;
+        const { Titulo, SubTitulo, Imagen, Path } = element;
 
         return(
-            <div className={classes.contenedor} style={ Header ? { backgroundImage: `url(${Header.Imagen})` } : {}}>
-                <GridListTileBar title={Nombre} subtitle={<span>{Descripcion}</span>}
+            <div className={classes.contenedor} style={ Imagen ? { backgroundImage: `url(${Imagen})` } : {}}>
+                <GridListTileBar title={Titulo} subtitle={<span>{SubTitulo}</span>}
                     actionIcon={
-                        <IconButton className={classes.icon}>
-                            <InfoIcon />
-                        </IconButton>
+                        <Link to={`/area/${Path}`}>
+                            <IconButton className={classes.icon}>
+                                <InfoIcon />
+                            </IconButton>
+                        </Link>
                     }
                 />
             </div>

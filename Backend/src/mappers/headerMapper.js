@@ -3,7 +3,8 @@ class HeaderMapper {
         return {
             Titulo: header.Titulo,
             Descripcion: header.Descripcion,
-            Imagen: host + header.Imagen.url
+            Imagen: host + header.Imagen.url,
+            Seccion: header.Seccion
         }
     }
 }

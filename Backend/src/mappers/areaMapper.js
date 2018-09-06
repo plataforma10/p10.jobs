@@ -7,9 +7,10 @@ class AreaMapper {
         var posiciones = area.Posiciones.map(function (posicion) { 
             return this.MapearPosicion(posicion);                     
         }.bind(this));
-        var header = area.Header ? headerMapper.MapearHeader(area.Header, config.CMS) : undefined; 
+        var header = area.Header ? headerMapper.MapearHeader(area.Header, config.UPLOAD) : undefined; 
         return {
             Nombre: area.Nombre,
+            SubTitulo: area.SubTitulo,
             Path: slugify(area.Nombre),
             Descripcion: area.Descripcion,
             FechaCreacion: area.createdAt,

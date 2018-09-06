@@ -19,6 +19,10 @@
     "Area": {
       "model": "area",
       "via": "Posiciones"
+    },
+    "Localidad": {
+      "default": "Buenos Aires",
+      "type": "string"
     }
   }
 }

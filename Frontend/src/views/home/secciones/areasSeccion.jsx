@@ -17,22 +17,19 @@ class AreasSeccion extends Component {
     }
 
     componentDidMount(){
-        axios
-            .create({
-              baseURL: `${process.env.HOST_BACK}`,
-              timeout: 10000
-            })
-            .get("/area")
+        axios.get(`${process.env.HOST_BACK}/area`)
             .then((res) => {
                 console.log(res.data); 
                 this.setState({
-                    areas: res.data
+                    areas: res.data.map((prop) => {
+                        return {
+                            Titulo: prop.Nombre,
+                            SubTitulo: prop.SubTitulo,
+                            Path: prop.Path,
+                            Imagen: prop.Header ? prop.Header.Imagen : ""
+                        }
+                    })
                 });    
-            })
-            .catch((err) =>{
-              this.setState({
-                error: true
-              })
             });
     }
 

@@ -8,4 +8,9 @@ router.get('/', async function (req, res, next) {
     success(header, res, next);
 });
 
+router.get('/home', async function (req, res, next) {
+    var header = await headerService.ObtenerHome();
+    success(header, res, next);
+});
+
 module.exports = router;
