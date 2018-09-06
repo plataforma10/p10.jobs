@@ -18,9 +18,11 @@ class Area extends Component {
         this.state = {
             Area: {}
         }
+        
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         axios.get(`${process.env.HOST_BACK}/area/${this.props.match.params.area}`)
         .then((res) => { 
             console.log(res);

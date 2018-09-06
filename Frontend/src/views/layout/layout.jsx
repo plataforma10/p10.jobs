@@ -22,10 +22,10 @@ class Layout extends Component {
             Descripcion: "Tu oprtunidad de empleo",
             Imagen: `/${imgParalax}`
         }
-        this.componentWillMount = this.componentWillMount.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         axios.get(`${process.env.HOST_BACK}/header/Home`)
         .then((res) => { 
             this.setState({

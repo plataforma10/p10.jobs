@@ -25,13 +25,13 @@ class Areas {
         return areas.find(x => x.Path === nombre.toLowerCase());
     }
 
-    ObtenerTodasPosiciones() {
+    async ObtenerTodasPosiciones() {
         try {
             var posiciones = cacheAreas.get("posiciones", true);
             return posiciones;
         } catch (err) {
-            var areas = axios.get(`${config.CMS}/area`);
-            var posiciones = areas.map(function (area) {
+            var res = await axios.get(`${config.CMS}/area`);
+            var posiciones = res.data.map(function (area) {
                 return areaMapper.MapearPosiciones(area);
             }); 
 
