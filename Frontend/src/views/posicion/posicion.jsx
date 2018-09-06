@@ -26,7 +26,7 @@ class Posicion extends Component {
     componentWillMount() {
       var area = this.props.match.params.area;
       var posicion = this.props.match.params.posicion;
-      axios.get(`${process.env.HOST_BACK}/area/${area}/${posicion}`)
+      axios.get(`${process.env.HOST_BACK}/area/${area}/posicion/${posicion}`)
         .then((res) => {
           var converter = new showdown.Converter();
           this.setState({

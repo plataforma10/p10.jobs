@@ -22,15 +22,15 @@ class TablaPosiciones extends Component {
 
     componentWillMount() {
         var area = this.props.area;
-        axios.get(`${process.env.HOST_BACK}/area/${area}`)
+        axios.get(`${process.env.HOST_BACK}/area/${area}/posiciones`)
             .then((res) => {
                 this.setState({
-                    Posiciones: res.data.Posiciones.map(function (pos) {
+                    Posiciones: res.data.map(function (pos) {
                         return {
                             Titulo: `${pos.Titulo}`,
                             Localidad: `${pos.Localidad}`,
                             FechaCreacion: `${moment(pos.FechaCreacion).locale("es").format("DD-MMMM-YYYY")}`,
-                            Path: `/area/${res.data.Path}/${pos.Path}`
+                            Path: `/area/${area}/${pos.Path}`
                         }
                     })
                 });

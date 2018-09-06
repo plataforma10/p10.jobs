@@ -4,9 +4,6 @@ var slugify = require('../helpers/slugify');
 
 class AreaMapper {
     MapearArea (area) {
-        var posiciones = area.Posiciones.map(function (posicion) { 
-            return this.MapearPosicion(posicion);                     
-        }.bind(this));
         var header = area.Header ? headerMapper.MapearHeader(area.Header, config.UPLOAD) : undefined; 
         return {
             Nombre: area.Nombre,
@@ -14,8 +11,18 @@ class AreaMapper {
             Path: slugify(area.Nombre),
             Descripcion: area.Descripcion,
             FechaCreacion: area.createdAt,
-            Posiciones: posiciones,
             Header: header
+        }
+    }
+
+    MapearPosiciones (area) {
+        var posiciones = area.Posiciones.map(function (posicion) { 
+            return this.MapearPosicion(posicion);                     
+        }.bind(this));
+
+        return {
+            PathArea: slugify(area.Nombre),
+            Posiciones: posiciones
         }
     }
 

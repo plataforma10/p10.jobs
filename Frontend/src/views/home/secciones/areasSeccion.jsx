@@ -17,7 +17,7 @@ class AreasSeccion extends Component {
     }
 
     componentDidMount(){
-        axios.get(`${process.env.HOST_BACK}/area`)
+        axios.get(`${process.env.HOST_BACK}/areas`)
             .then((res) => {
                 console.log(res.data); 
                 this.setState({
