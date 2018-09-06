@@ -26,14 +26,29 @@ class Layout extends Component {
     }
 
     componentDidMount() {
-        axios.get(`${process.env.HOST_BACK}/header/Home`)
-        .then((res) => { 
+        const header = localStorage.getItem("header/Home");
+        if (header) {
+            var home = JSON.parse(header);
             this.setState({
-                Titulo: res.data.Titulo,
-                Descripcion: res.data.Descripcion,
-                Imagen: res.data.Imagen
-            });    
-        });    
+                Titulo: home.Titulo,
+                Descripcion: home.Descripcion,
+                Imagen: home.Imagen
+            });
+            return;
+        }  
+
+        axios.get(`${process.env.HOST_BACK}/header/Home`)        
+        .then((res) => res.data)
+        .then((result) => this.onSetResult(result, "header/Home"));
+    }
+
+    onSetResult = (result, key) => {
+        localStorage.setItem(key, JSON.stringify(result));
+        this.setState({
+            Titulo: result.Titulo,
+            Descripcion: result.Descripcion,
+            Imagen: result.Imagen
+        });
     }
 
     render() {

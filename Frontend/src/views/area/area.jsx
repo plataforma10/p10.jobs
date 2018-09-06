@@ -18,18 +18,25 @@ class Area extends Component {
         this.state = {
             Area: {}
         }
-        
+
         this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     componentDidMount() {
+        const area = localStorage.getItem(this.props.match.params.area);
+        if (area) {
+          this.setState({ Area: JSON.parse(area) });
+          return;
+        }    
+
         axios.get(`${process.env.HOST_BACK}/area/${this.props.match.params.area}`)
-        .then((res) => { 
-            console.log(res);
-            this.setState({
-                Area: res.data
-            });    
-        });    
+        .then((res) => res.data)
+        .then((result) => this.onSetResult(result, this.props.match.params.area));    
+    }
+
+    onSetResult = (result, key) => {
+        localStorage.setItem(key, JSON.stringify(result));
+        this.setState({ Area: result });
     }
 
     render() {

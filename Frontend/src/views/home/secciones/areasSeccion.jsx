@@ -17,20 +17,28 @@ class AreasSeccion extends Component {
     }
 
     componentDidMount(){
+        const areas = localStorage.getItem("areas");
+        if (areas) {
+          this.setState({ areas: JSON.parse(areas) });
+          return;
+        }    
+
         axios.get(`${process.env.HOST_BACK}/areas`)
-            .then((res) => {
-                console.log(res.data); 
-                this.setState({
-                    areas: res.data.map((prop) => {
-                        return {
-                            Titulo: prop.Nombre,
-                            SubTitulo: prop.SubTitulo,
-                            Path: prop.Path,
-                            Imagen: prop.Header ? prop.Header.Imagen : ""
-                        }
-                    })
-                });    
-            });
+            .then((res) => res.data)
+            .then((result) => this.onSetResult(result, "areas"));  
+    }
+
+    onSetResult = (result, key) => {        
+        var areas = result.map((prop) => {
+            return {
+                Titulo: prop.Nombre,
+                SubTitulo: prop.SubTitulo,
+                Path: prop.Path,
+                Imagen: prop.Header ? prop.Header.Imagen : ""
+            }
+        });
+        this.setState({ areas: areas });   
+        localStorage.setItem(key, JSON.stringify(areas));
     }
 
     render(){
