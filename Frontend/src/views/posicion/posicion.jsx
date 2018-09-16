@@ -64,7 +64,7 @@ class Posicion extends Component {
                 </GridItem>
                 <GridItem>
                   <div className={`${classes.container} ${classes.buttonRight}`}>
-                    <Modal  nombre={"Postularme"}/>
+                    <Modal nombre={"Postularme"}/>
                   </div>
                 </GridItem>
               </GridContainer>
