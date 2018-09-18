@@ -4,6 +4,7 @@ var config = require('../settings/configuracion').Obtener();
 class Jira {
     async CrearIssue(nombre, apellido, email, archivo) {
         try{            
+            console.log(config.JIRA);
             axios({
                 method: 'post',
                 url: `${config.JIRA}/rest/api/2/issue`,
@@ -24,9 +25,9 @@ class Jira {
                     }
                 }                
             }).then(response =>{
-                return response;
+                return response.status;
             }).catch(err =>{
-                return err;
+                return err.status;
             });
         }
         catch(err){
