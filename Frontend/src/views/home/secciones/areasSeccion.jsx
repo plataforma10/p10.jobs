@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import GridListTile from '@material-ui/core/GridListTile';
-import Gallery from '../../../components/gallery/gallery';
-import GalleryItem from '../../../components/gallery/galleryItem';
+import Gallery, { GalleryItem } from '../../../components/gallery';
 import axios from 'axios';
-import Cargando from '../../../components/cargando/cargando'
-import GridContainer from '../../../components/grid/gridContainer.jsx';
+import Loading from '../../../components/loading'
+import GridContainer from '../../../components/grid/gridContainer';
 
 class AreasSeccion extends Component { 
     constructor(){
@@ -52,7 +51,7 @@ class AreasSeccion extends Component {
                         <GalleryItem element={item} />
                     </GridListTile>
                 ))}
-                </Gallery>) : (<Cargando />)
+                </Gallery>) : (<Loading />)
             }
           </GridContainer>
         );

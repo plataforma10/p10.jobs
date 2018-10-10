@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 // Componentes
 import TablaPosiciones from './secciones/tablaPosiciones.jsx';
-import GridContainer from '../../components/grid/gridContainer.jsx';
-import GridItem from '../../components/grid/gridItem.jsx';
+import GridContainer from '../../components/grid/gridContainer';
+import GridItem from '../../components/grid/gridItem';
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // Estilos

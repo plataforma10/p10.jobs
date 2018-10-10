@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Componentes
-import Header from '../../components/header/header.jsx';
-import Parallax from '../../components/parallax/parallax.jsx';
-import GridContainer from '../../components/grid/gridContainer.jsx';
-import GridItem from '../../components/grid/gridItem.jsx';
-import Footer from '../../components/footer/Footer.jsx';
+import Header from '../../components/header';
+import Parallax from '../../components/parallax';
+import GridContainer from '../../components/grid/gridContainer';
+import GridItem from '../../components/grid/gridItem';
+import Footer from '../../components/footer';
 import logo from "../../assets/img/logoP10.jpg";
 import imgParalax from "../../assets/img/bg4.jpg";
 import axios from 'axios';
-import SocialIcon from "../../components/iconos/SocialIcon.jsx";
+import SocialIcon from "../../components/icons/socialIcon";
 
 // Estilos
 import estilos from '../../assets/styles/views/layout/layoutStyle.jsx';

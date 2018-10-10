@@ -1,6 +1,6 @@
 import { warningBoxShadow, successBoxShadow, dangerBoxShadow, infoBoxShadow, 
     primaryBoxShadow, roseBoxShadow } from './sombras.jsx';
-import { defaultFont } from '../base.jsx';
+import { defaultFont, title } from '../base.jsx';
 
 const card = {
     display: "inline-block",
