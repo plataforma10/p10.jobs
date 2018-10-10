@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Componentes
-import Header from '../../components/header';
-import Parallax from '../../components/parallax';
-import GridContainer from '../../components/grid/gridContainer';
-import GridItem from '../../components/grid/gridItem';
-import Footer from '../../components/footer';
-import logo from "../../assets/img/logoP10.jpg";
-import imgParalax from "../../assets/img/bg4.jpg";
+import Header from '../../header';
+import Parallax from '../../parallax';
+import GridContainer from '../../grid/gridContainer';
+import GridItem from '../../grid/gridItem';
+import Footer from '../../footer';
+import logo from "../../../assets/img/logoP10.jpg";
+import imgParalax from "../../../assets/img/bg4.jpg";
 import axios from 'axios';
-import SocialIcon from "../../components/icons/socialIcon";
+import SocialIcon from "../../icons/socialIcon";
 
 // Estilos
-import estilos from '../../assets/styles/views/layout/layoutStyle.jsx';
+import estilos from './styles';
 
 class Layout extends Component {
     constructor(){

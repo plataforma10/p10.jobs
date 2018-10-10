@@ -1,4 +1,4 @@
-import { container, main } from '../../base.jsx';
+import { container, main } from '../../../assets/styles/base';
 
 const layoutStyle = {
     container,

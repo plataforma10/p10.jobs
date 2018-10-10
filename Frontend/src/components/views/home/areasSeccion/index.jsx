@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import GridListTile from '@material-ui/core/GridListTile';
-import Gallery, { GalleryItem } from '../../../components/gallery';
+import Gallery, { GalleryItem } from '../../../gallery';
 import axios from 'axios';
-import Loading from '../../../components/loading'
-import GridContainer from '../../../components/grid/gridContainer';
+import Loading from '../../../loading'
+import GridContainer from '../../../grid/gridContainer';
 
 class AreasSeccion extends Component { 
     constructor(){

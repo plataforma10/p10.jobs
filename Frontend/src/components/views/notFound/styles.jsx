@@ -1,6 +1,6 @@
-import { container, main } from '../../base.jsx';
+import { container, main } from '../../../assets/styles/base';
 
-const homeStyle = {
+const styles = {
     container,
     main,
     title: {
@@ -11,4 +11,4 @@ const homeStyle = {
     }
 }
 
-export default homeStyle;
+export default styles;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Componentes
-import Layout from '../layout/layout.jsx';
-import GridContainer from '../../components/grid/gridContainer';
-import GridItem from '../../components/grid/gridItem';
+import Layout from '../layout';
+import GridContainer from '../../grid/gridContainer';
+import GridItem from '../../grid/gridItem';
 
 // Estilos
-import estilos from '../../assets/styles/views/home/homeStyle.jsx';
+import styles from './styles';
 
 class NotFound extends Component {
 
@@ -28,4 +28,4 @@ class NotFound extends Component {
     };
 }
 
-export default withStyles(estilos)(NotFound)
+export default withStyles(styles)(NotFound)

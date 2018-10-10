@@ -1,7 +1,7 @@
-import Home from "../views/home/home.jsx";
-import Area from "../views/area/area.jsx";
-import Posicion from "../views/posicion/posicion.jsx";
-import NotFound from "../views/notFound/NotFound.jsx";
+import Home from "../components/views/home";
+import Area from "../components/views/area";
+import Posicion from "../components/views/posicion";
+import NotFound from "../components/views/notFound";
 
 var indexRoutes = [
     { path: "/", name: "Home", component: Home, exact: true },    

@@ -1,6 +1,6 @@
-import { container, main } from '../../base.jsx';
+import { container, main } from '../../../assets/styles/base';
 
-const posicionStyle = {
+const areaStyle = {
     container,
     main,
     title: {
@@ -14,4 +14,4 @@ const posicionStyle = {
     }
 }
 
-export default posicionStyle;
+export default areaStyle;

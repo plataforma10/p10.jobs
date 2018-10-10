@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 // Componentes
-import TablaPosiciones from './secciones/tablaPosiciones.jsx';
-import GridContainer from '../../components/grid/gridContainer';
-import GridItem from '../../components/grid/gridItem';
+import TablaPosiciones from './tablaPosiciones';
+import GridContainer from '../../grid/gridContainer';
+import GridItem from '../../grid/gridItem';
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // Estilos
-import estilos from '../../assets/styles/views/area/areaStyle.jsx';
+import estilos from './styles';
 
 // Views
-import Layout from '../layout/layout.jsx';
+import Layout from '../layout';
 
 class Area extends Component {
     constructor() {

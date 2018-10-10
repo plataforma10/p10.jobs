@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Componentes
-import Layout from '../layout/layout.jsx';
-import GridContainer from '../../components/grid/gridContainer';
-import GridItem from '../../components/grid/gridItem';
-import AreasSeccion from './secciones/areasSeccion.jsx';
+import Layout from '../layout';
+import GridContainer from '../../grid/gridContainer';
+import GridItem from '../../grid/gridItem';
+import AreasSeccion from './areasSeccion';
 // Estilos
-import estilos from '../../assets/styles/views/home/homeStyle.jsx';
+import estilos from './styles';
 
 class Home extends Component {
   render() {

@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Componentes
-import Layout from '../layout/layout.jsx';
-import GridContainer from '../../components/grid/gridContainer';
-import GridItem from '../../components/grid/gridItem';
-import Modal from '../../components/modal';
+import Layout from '../layout';
+import GridContainer from '../../grid/gridContainer';
+import GridItem from '../../grid/gridItem';
+import Modal from '../../modal';
 import showdown  from 'showdown';
 import axios from 'axios';
-import NotMatch from '../../components/notMatch';
+import NotMatch from '../../notMatch';
 
 // Estilos
-import posicionStyle from '../../assets/styles/views/posicion/posicionStyle.jsx';
+import posicionStyle from './styles';
 
 class Posicion extends Component {
     constructor(){

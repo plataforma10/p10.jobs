@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
 // Componentes
-import GridItem from "../../../components/grid/gridItem";
-import GridContainer from "../../../components/grid/gridContainer";
-import CustomTable, { TableItemPosicion } from "../../../components/table";
-import Card, { CardBody } from "../../../components/card";
-import SnackbarContent from '../../../components/snackbar';
+import GridItem from "../../../grid/gridItem";
+import GridContainer from "../../../grid/gridItem";
+import CustomTable, { TableItemPosicion } from "../../../table";
+import Card, { CardBody } from "../../../card";
+import SnackbarContent from '../../../snackbar';
 
 class TablaPosiciones extends Component {
     constructor() {

@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import registerServiceWorker from './registerServiceWorker';
 import Routes from "./routes/routes.jsx";
 import NoMatch from "./components/notMatch";
 import './assets/styles/scss/main.scss';
@@ -22,4 +21,3 @@ ReactDOM.render
     </Router>,
     document.getElementById("root")
 );
-registerServiceWorker();

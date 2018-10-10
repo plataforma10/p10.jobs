@@ -1,6 +1,6 @@
-import { container, main } from '../../base.jsx';
+import { container, main } from '../../../assets/styles/base';
 
-const areaStyle = {
+const homeStyle = {
     container,
     main,
     title: {
@@ -8,10 +8,7 @@ const areaStyle = {
         fontWeight: "600",
         display: "inline-block",
         position: "relative"
-    },
-    buttonRight: {
-        textAlign: "right"
     }
 }
 
-export default areaStyle;
+export default homeStyle;
