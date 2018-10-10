@@ -10,8 +10,9 @@
 cms/public
 Backend/public
 Frontend/public/*.js
+Frontend/public/*.jsgz
+package-lock.json
 
 # misc
 */*.env
 */.vs
-*/package-lock.json
