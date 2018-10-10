@@ -20,7 +20,7 @@ class Layout extends Component {
         this.state = {
             Titulo: "Plataforma 10 Jobs",
             Descripcion: "Tu oprtunidad de empleo",
-            Imagen: `/${imgParalax}`
+            Imagen: `${imgParalax}`
         }
         this.componentDidMount = this.componentDidMount.bind(this);
     }
@@ -58,7 +58,7 @@ class Layout extends Component {
             <div>
                 <Header brand="Plataforma 10" fixed color="transparent"
                     changeColorOnScroll={{ height: 400, color: "naranja" }}
-                    srcLogo={`/${logo}`}
+                    srcLogo={`${logo}`}
                     {...rest} />
                 <Parallax image={`${header ? header.Imagen : this.state.Imagen }`}>
                     <div className={classes.container}>

@@ -1,6 +1,6 @@
 // React
 import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 
 // Components
 import Home from "./views/home";
@@ -11,14 +11,14 @@ import NoMatch from "./notMatch";
 
 // Styles
 import withStyles from "@material-ui/core/styles/withStyles";
-import styles from './styles';
+import { styles } from './styles';
 
 
 class App extends React.PureComponent 
 {
   render() {
     return(
-      <BrowserRouter>
+      <div>
         <Switch>
           <Route exact={true} path="/" component={Home} />
           <Route exact={true} path="/area/:area" component={Area} />
@@ -26,7 +26,7 @@ class App extends React.PureComponent
           <Route exact={true} path="/no-encontrado" component={NotFound} />
           <Route component={NoMatch} />
         </Switch>
-      </BrowserRouter>
+      </div>
     );
   }
 }

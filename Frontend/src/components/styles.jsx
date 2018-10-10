@@ -1,4 +1,28 @@
-const styles = {
+import { createMuiTheme } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
+import lightBlue from '@material-ui/core/colors/lightBlue';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'light',
+    text: {
+      primary: grey[50],
+      secondary: grey[900],
+    },
+    primary: { main: grey[50] },
+    secondary: {
+      main: lightBlue[600], 
+      contrastText: grey[50] 
+    }
+  },
+  typography: {
+    fontFamily: [
+        "Roboto", "Helvetica", "Arial", "sans-serif"
+    ]
+  }
+});
+
+const styles = (theme) => ({
     '@global': {
         '*': {
             '-webkit-tap-highlight-color': "rgba(255, 255, 255, 0)",
@@ -26,7 +50,7 @@ const styles = {
             textAlign: "left"
         },
         'body, h1, h2, h3, h4, h5, h6': {
-            fontFamily: "'Roboto', 'Helvetica', 'Arial', 'sans-serif'",
+            fontFamily: theme.typography.fontFamily,
             fontWeight: "300",
             lineHeight: "1.5em"
         },
@@ -35,6 +59,6 @@ const styles = {
             borderStyle: "none"
         }
     }
-};
+});
 
-export default styles;
+export { theme, styles };

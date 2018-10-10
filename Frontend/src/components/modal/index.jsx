@@ -40,6 +40,7 @@ class Modal extends React.Component{
     this.setState(x);
   }
   validarCampos(){
+    const { nombre, apellido, email } = this.props;
     if(nombre.value == '' || nombre.value == undefined){      
       return false;
     }
@@ -51,7 +52,8 @@ class Modal extends React.Component{
     }    
     return true;
   }
-  acceptPostulacion(modal){        
+  acceptPostulacion(modal){    
+    const { nombre, apellido, email } = this.props;        
     if(this.validarCampos()){
       axios.post(`${process.env.HOST_BACK}/jira/${nombre.value}/${apellido.value}/${email.value}/agregarArchivoAca`)
       .then((res) => {
