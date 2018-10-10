@@ -1,5 +1,4 @@
-import { container } from "../../assets/styles/base";
-import { primaryColor } from "../../assets/styles/variables/colores";
+import { container, primaryColor } from "../coreStyles";
 
 const footerStyle = {
   block: {

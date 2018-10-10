@@ -1,8 +1,5 @@
-import {  container,  defaultFont, transition,
-    drawerWidth } from "../../assets/styles/base";
-import { boxShadow } from '../../assets/styles/variables/sombras'
-import {primaryColor,  infoColor,  successColor,  
-  warningColor, dangerColor, roseColor,} from '../../assets/styles/variables/colores';
+import { container,  defaultFont, transition, drawerWidth, boxShadow, primaryColor, infoColor, 
+  successColor, warningColor, dangerColor, roseColor } from '../coreStyles'
 
 const styles = {
   appBar: {

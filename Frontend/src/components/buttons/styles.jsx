@@ -1,5 +1,5 @@
 import { grayColor, roseColor, primaryColor, infoColor,
-    successColor, warningColor, dangerColor } from "../../assets/styles/variables/colores";
+    successColor, warningColor, dangerColor } from "../coreStyles";
 
 const buttonStyle = {
     btn: {

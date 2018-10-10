@@ -1,6 +1,5 @@
 import { primaryBoxShadow, infoBoxShadow, successBoxShadow,
-    warningBoxShadow, dangerBoxShadow } from "../../assets/styles/variables/sombras";
-import { defaultFont, container } from '../../assets/styles/base';
+    warningBoxShadow, dangerBoxShadow, defaultFont, container  } from "../coreStyles";
 
 const styles = {
     root: {

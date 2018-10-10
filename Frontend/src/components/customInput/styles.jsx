@@ -1,5 +1,4 @@
-import { defaultFont } from '../../assets/styles/base';
-import { primaryColor, dangerColor, successColor } from '../../assets/styles/variables/colores';
+import { defaultFont, primaryColor, dangerColor, successColor } from '../coreStyles';
 
 const InputStyle = {  
     input: {

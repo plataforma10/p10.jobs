@@ -7,7 +7,9 @@
 */coverage
 
 # production
-*/public
+cms/public
+Backend/public
+Frontend/public/*.js
 
 # misc
 */*.env

@@ -1,5 +1,5 @@
 import {  warningColor,  primaryColor,  dangerColor,  successColor,
-  infoColor,  roseColor,  grayColor,  defaultFont } from "../../assets/styles/variables/colores";
+  infoColor,  roseColor,  grayColor,  defaultFont } from "../coreStyles";
 
 const tableStyle = theme => ({
   warningTableHeader: {

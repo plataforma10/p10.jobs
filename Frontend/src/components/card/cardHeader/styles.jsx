@@ -1,11 +1,6 @@
-import {
-  warningCardHeader,
-  successCardHeader,
-  dangerCardHeader,
-  infoCardHeader,
-  primaryCardHeader,
-  roseCardHeader
-} from "../../../assets/styles/variables/card";
+import { warningCardHeader, successCardHeader, dangerCardHeader, infoCardHeader,
+  primaryCardHeader, roseCardHeader } from "../../coreStyles";
+
 const cardHeaderStyle = {
   cardHeader: {
     padding: "0.75rem 1.25rem",

@@ -6,8 +6,8 @@ import Parallax from '../../parallax';
 import GridContainer from '../../grid/gridContainer';
 import GridItem from '../../grid/gridItem';
 import Footer from '../../footer';
-import logo from "../../../assets/img/logoP10.jpg";
-import imgParalax from "../../../assets/img/bg4.jpg";
+import logo from "../../../../public/img/logoP10.jpg";
+import imgParalax from "../../../../public/img/bg4.jpg";
 import axios from 'axios';
 import SocialIcon from "../../icons/socialIcon";
 
