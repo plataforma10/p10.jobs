@@ -15,5 +15,6 @@ Frontend/public/*.jsgz
 package-lock.json
 
 # misc
-*/*.env
+.env
+.env.production
 */.vs

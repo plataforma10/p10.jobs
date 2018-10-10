@@ -5,20 +5,16 @@ services:
     build: ./Frontend
     ports:
       - 8080:8080
-    links: 
-      - back:host-back
     depends_on: 
       - back
   back:
     build: ./Backend
     ports:
       - 8081:8081
-    links: 
-      - cms:cmshost
     depends_on: 
       - cms
     environment:
-      CMS: http://cmshost:1337
+      CMS: http://cms:1337
       PORT: 8081
       CACHE_AREAS: 0
       CACHE_HEADER: 0

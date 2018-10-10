@@ -9,7 +9,7 @@ module.exports = {
     if (dev) {
     	env = dotenv.config().parsed;
     } else {
-  		env = dotenv.parse(fs.readFileSync('production.env'))  	
+  		env = dotenv.parse(fs.readFileSync('.env.production'))  	
     }
 
   	appConfig.plugins.push(
