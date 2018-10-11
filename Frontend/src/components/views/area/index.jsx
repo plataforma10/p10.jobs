@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import axios from 'axios';
 // Componentes
 import TablaPosiciones from './tablaPosiciones';
 import GridContainer from '../../grid/gridContainer';
 import GridItem from '../../grid/gridItem';
 import withStyles from "@material-ui/core/styles/withStyles";
+import { setHeader } from '../../../actions';
 
 // Estilos
 import estilos from './styles';
@@ -16,34 +19,28 @@ class Area extends Component {
     constructor() {
         super();
         this.state = {
-            Area: {}
+            area: {}
         }
 
         this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     componentDidMount() {
-        const area = localStorage.getItem(this.props.match.params.area);
-        if (area) {
-          this.setState({ Area: JSON.parse(area) });
-          return;
-        }    
-
         axios.get(`${process.env.HOST_BACK}/area/${this.props.match.params.area}`)
-        .then((res) => res.data)
-        .then((result) => this.onSetResult(result, this.props.match.params.area));    
+            .then((res) => res.data)
+            .then((result) => this.onSetResult(result));    
     }
 
-    onSetResult = (result, key) => {
-        localStorage.setItem(key, JSON.stringify(result));
-        this.setState({ Area: result });
+    onSetResult = (area) => {
+        this.setState({ area: area });
+        this.props.dispatch(setHeader(area.Header));
     }
 
     render() {
         const { classes } = this.props;
 
         return (
-            <Layout className={classes.main} header={this.state.Area.Header}>
+            <Layout className={classes.main}>
                 <GridContainer>
                     <GridItem>
                         <div className={classes.container}>
@@ -56,4 +53,10 @@ class Area extends Component {
     }
 }
 
-export default withStyles(estilos)(Area);
+function mapStateToProps(state) {
+    return {
+        state: state.app
+    }
+}
+
+export default connect(mapStateToProps)(withStyles(estilos)(Area));

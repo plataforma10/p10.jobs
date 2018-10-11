@@ -13,19 +13,6 @@ const App = Loadable({
   loading: () => null
 });
 
-class Main extends React.Component {
-  componentDidMount() {
-    const jssStyles = document.getElementById('jss-server-side');
-    if (jssStyles && jssStyles.parentNode) {
-      jssStyles.parentNode.removeChild(jssStyles);
-    }
-  }
-
-  render() {
-    return <App />;
-  }
-}
-
 const store = configureStore();
 
 const generateClassName = createGenerateClassName();
@@ -35,15 +22,13 @@ hydrate(
 	    <MuiThemeProvider theme={theme}>
 	      <Provider store={store}>
 		        <BrowserRouter>
-		            <Main />
+              <App />
 		        </BrowserRouter>
 		    </Provider>
 	    </MuiThemeProvider>
 	  </JssProvider>,
   document.querySelector('#root')
 );
-
-document.querySelector('#root-server').remove()
 
 if (module.hot) {
   module.hot.accept();

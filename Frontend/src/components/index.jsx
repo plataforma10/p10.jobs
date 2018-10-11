@@ -15,7 +15,18 @@ import { styles } from './styles';
 
 
 class App extends Component
-{
+{  
+  componentDidMount() {    
+    const rootServer = document.getElementById('root-server');
+    if (rootServer && rootServer.parentNode) {
+      rootServer.parentNode.removeChild(rootServer);
+    }
+    const jssStyles = document.getElementById('jss-server-side');
+    if (jssStyles && jssStyles.parentNode) {
+      jssStyles.parentNode.removeChild(jssStyles);
+    }
+  }
+
   render() {
     return(
       <Switch>

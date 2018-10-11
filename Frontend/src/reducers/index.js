@@ -2,7 +2,8 @@ import { combineReducers } from 'redux';
 
 let initState = {
     newState: {
-        console: 'Hello word from Init State'
+        areas: [],
+        header: {}
     }
 }
 
