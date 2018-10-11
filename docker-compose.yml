@@ -10,12 +10,12 @@ services:
   back:
     build: ./Backend
     ports:
-      - 8081:8081
+      - 8082:8082
     depends_on: 
       - cms
     environment:
       CMS: http://cms:1337
-      PORT: 8081
+      PORT: 8082
       CACHE_AREAS: 0
       CACHE_HEADER: 0
   cms:

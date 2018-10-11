@@ -1,5 +1,5 @@
 // React
-import React from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
 
 // Components
@@ -14,19 +14,17 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from './styles';
 
 
-class App extends React.PureComponent 
+class App extends Component
 {
   render() {
     return(
-      <div>
-        <Switch>
-          <Route exact={true} path="/" component={Home} />
-          <Route exact={true} path="/area/:area" component={Area} />
-          <Route exact={true} path="/area/:area/:posicion" component={Posicion} />
-          <Route exact={true} path="/no-encontrado" component={NotFound} />
-          <Route component={NoMatch} />
-        </Switch>
-      </div>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/area/:area" component={Area} />
+        <Route exact path="/area/:area/:posicion" component={Posicion} />
+        <Route exact path="/no-encontrado" component={NotFound} />
+        <Route component={NoMatch} />
+      </Switch>
     );
   }
 }
