@@ -1,16 +1,12 @@
 // React
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 // Componentes
 import { Grid } from '@material-ui/core';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Estilos
 import styles from '../styles';
 
-class GridItem extends Component {
-    constructor(){
-        super();
-    }
-
+class GridItem extends PureComponent {
     render() {
         const { classes, children, className, ...rest } = this.props;
         return (

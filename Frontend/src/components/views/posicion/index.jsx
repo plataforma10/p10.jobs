@@ -19,11 +19,10 @@ class Posicion extends Component {
         Titulo: "",
         Descripcion: "",
         NoEncontrado: false
-      }
-      this.componentWillMount = this.componentWillMount.bind(this);
+      };
     }
     
-    componentWillMount() {
+    componentDidMount() {
       var area = this.props.match.params.area;
       var posicion = this.props.match.params.posicion;
       axios.get(`${process.env.HOST_BACK}/area/${area}/posicion/${posicion}`)
@@ -69,7 +68,7 @@ class Posicion extends Component {
                 </GridItem>
               </GridContainer>
             </Layout>
-        )
+        );
     };
 }
 

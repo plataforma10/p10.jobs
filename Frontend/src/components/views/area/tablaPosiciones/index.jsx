@@ -15,10 +15,9 @@ class TablaPosiciones extends Component {
             AreaSinPosiciones: false,
             Posiciones: []
         };
-        this.componentWillMount = this.componentWillMount.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
         var area = this.props.area;
         axios.get(`${process.env.HOST_BACK}/area/${area}/posiciones`)
             .then((res) => {

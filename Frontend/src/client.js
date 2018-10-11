@@ -43,6 +43,8 @@ hydrate(
   document.querySelector('#root')
 );
 
+document.querySelector('#root-server').remove()
+
 if (module.hot) {
   module.hot.accept();
 }

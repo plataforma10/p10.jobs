@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -8,10 +8,7 @@ import styles from './styles';
 
 import GalleryItem from './galleryItem';
 
-class Gallery extends Component {
-    constructor(){
-        super();
-    }
+class Gallery extends PureComponent {
     render(){
         const { classes, children, titulo } = this.props;
 

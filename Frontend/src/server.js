@@ -55,7 +55,7 @@ server.use((req, res) => {
       fs.readFile('./public/views/index.html', 'utf-8', function(error, source){
         var template = handlebars.compile(source);
         var html = template({assets: assets, css: css});
-        html = html.replace('<div id="root"></div>', `<div id="root">${markup}</div>`);
+        html = html.replace('<div id="root-server"></div>', `<div id="root-server">${markup}</div>`);
         res.send(html);
       });
     }

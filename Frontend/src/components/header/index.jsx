@@ -75,7 +75,7 @@ class Header extends React.Component {
             <AppBar className={appBarClasses}>
               <Toolbar className={classes.container}>
                 <div className={classes.flex}>
-                  {srcLogo ? (<img src={srcLogo} className={classes.logo}/>) : (null)}                  
+                  {srcLogo ? (<img alt="plataforma10" src={srcLogo} className={classes.logo}/>) : (null)}                  
                   <Button className={classes.title}>            
                     {brand}
                   </Button>

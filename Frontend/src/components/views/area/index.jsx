@@ -40,7 +40,7 @@ class Area extends Component {
     }
 
     render() {
-        const { classes, ...rest } = this.props;
+        const { classes } = this.props;
 
         return (
             <Layout className={classes.main} header={this.state.Area.Header}>

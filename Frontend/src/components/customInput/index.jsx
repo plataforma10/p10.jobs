@@ -1,5 +1,5 @@
 // React
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // nodejs library that concatenates classes
@@ -14,14 +14,10 @@ import Check from "@material-ui/icons/Check";
 // Estilos
 import InputStyle from './styles';
 
-class CustomInput extends Component {
-    constructor() {
-        super();
-    }
-    
+class CustomInput extends PureComponent {
     render() {             
         const { classes, formProps, labelProps, inputProps, labelText,
-            id, error, white, success, disabled } = this.props;
+            id, error, white, success } = this.props;
         
         const formControlClasses = classNames(classes.formControl);
 

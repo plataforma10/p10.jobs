@@ -41,13 +41,13 @@ class Modal extends React.Component{
   }
   validarCampos(){
     const { nombre, apellido, email } = this.props;
-    if(nombre.value == '' || nombre.value == undefined){      
+    if(!nombre.value){      
       return false;
     }
-    if(apellido.value == '' || nombre.value == undefined){      
+    if(!apellido.value){      
       return false;
     }
-    if(email.value == '' || nombre.value == undefined){
+    if(!email.value){
       return false;
     }    
     return true;
@@ -62,7 +62,7 @@ class Modal extends React.Component{
         }
       })
       .catch((err) => {
-        err;
+        console.log(err);
       });
     }   
   }  

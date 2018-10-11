@@ -21,9 +21,6 @@ const styles = (theme) => ({
             '-webkit-font-smoothing': 'antialiased',
             '-moz-osx-font-smoothing': 'grayscale'
         },
-        body: {
-          fontSize: '1rem'
-        },
         'body, h1, h2, h3, h4, h5, h6': {
             fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
             fontWeight: '300',
@@ -88,7 +85,6 @@ const styles = (theme) => ({
           borderBottom: '0'
         },
         '*': {
-          '-webkit-tap-highlight-color': 'rgba(255, 255, 255, 0)',
           '-webkit-tap-highlight-color': 'transparent',
           boxSizing: 'border-box',
           '&:focus': {

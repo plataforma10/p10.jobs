@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 import { Link } from "react-router-dom";
 // @material-ui/core components
 import TableRow from "@material-ui/core/TableRow";
@@ -10,11 +10,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // core components
 import tableStyle from "../styles";
 
-class TableItemPosicion extends Component {
-    constructor() {
-        super();
-    }
-
+class TableItemPosicion extends PureComponent {
     render() {
         const { classes, posicion } = this.props;
         

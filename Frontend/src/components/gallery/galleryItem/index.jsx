@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -7,11 +7,7 @@ import GalerryItemStyle from './styles';
 import { Link } from "react-router-dom";
 
 
-class GalleryItem extends Component {
-    constructor(){
-        super();
-    }
-
+class GalleryItem extends PureComponent {
     render() {
         const { classes, element } = this.props;
         const { Titulo, SubTitulo, Imagen, Path } = element;

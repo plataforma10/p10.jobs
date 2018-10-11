@@ -1,5 +1,5 @@
 // React
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import classNames from "classnames";
 import PropTypes from "prop-types";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -13,11 +13,7 @@ const icons = {
 }
 
 
-class SocialIcon extends Component {
-    constructor () {
-        super();
-    }
-
+class SocialIcon extends PureComponent {
     render() {
         const { classes, icon, href, tarjetBlanck } = this.props;
         const classIcon = classNames(classes.icon, "baseline", {

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Componentes
 import Layout from '../layout';
@@ -8,9 +8,9 @@ import AreasSeccion from './areasSeccion';
 // Estilos
 import estilos from './styles';
 
-class Home extends Component {
+class Home extends PureComponent {
   render() {
-      const { classes, ...rest } = this.props;
+      const { classes } = this.props;
       return (
         <Layout className={classes.main}>
           <GridContainer>
