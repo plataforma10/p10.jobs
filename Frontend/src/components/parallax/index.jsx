@@ -55,6 +55,7 @@ class Parallax extends React.Component {
         }}
         ref="parallax"
       >
+        <div className={classes.sombra}></div>
         {children}
       </div>
     );

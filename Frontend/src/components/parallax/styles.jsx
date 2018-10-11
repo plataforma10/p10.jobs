@@ -29,6 +29,14 @@ const parallaxStyle = {
   },
   small: {
     height: "380px"
+  },
+  sombra: {
+    left: 0,
+    right: 0,
+    height: '100%',
+    display: 'flex',
+    position: 'absolute',
+    background: 'rgba(0, 0, 0, 0.2)'
   }
 };
 
