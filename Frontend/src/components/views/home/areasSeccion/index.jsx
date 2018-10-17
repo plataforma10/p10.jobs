@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 // Componentes
 import Gallery, { GalleryItem } from '../../../gallery';
 import axios from 'axios';
 import Loading from '../../../loading'
 import GridContainer from '../../../grid/gridContainer';
 import { setAreas } from '../../../../actions';
+import { reduxConnect } from '../../../HOCs';
 
+@reduxConnect
 class AreasSeccion extends Component { 
     constructor(){
         super();
@@ -61,10 +62,4 @@ class AreasSeccion extends Component {
     };
 }
 
-function mapStateToProps(state) {
-    return {
-        state: state.app
-    }
-}
-
-export default connect(mapStateToProps)(AreasSeccion);
+export default AreasSeccion;

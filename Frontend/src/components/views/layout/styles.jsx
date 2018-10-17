@@ -4,7 +4,8 @@ const layoutStyle = {
     container,
     main,
     brand: {
-        color: "#FFFFFF",
+        zIndex: 1,
+        color: "#fff",
         textAlign: "left"
     },
     title: {

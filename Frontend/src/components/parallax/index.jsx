@@ -1,18 +1,17 @@
 import React from "react";
-// nodejs library that concatenates classes
+// nodejs library
 import classNames from "classnames";
-// nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 
 // core components
-import parallaxStyle from "./styles";
+import styles from "./styles";
 
+@withStyles(styles)
 class Parallax extends React.Component {
   constructor(props) {
     super(props);
-    //var windowScrollTop = window.pageYOffset  / 3;
     this.state = {
       transform: "translate3d(0," + 0 + "px,0)"
     };
@@ -46,15 +45,7 @@ class Parallax extends React.Component {
     });
     
     return (
-      <div
-        className={parallaxClasses}
-        style={{
-          ...style,
-          backgroundImage: "url(" + image + ")",
-          ...this.state
-        }}
-        ref="parallax"
-      >
+      <div className={parallaxClasses} style={{ ...style, backgroundImage: "url(" + image + ")", ...this.state }} ref="parallax" >
         <div className={classes.sombra}></div>
         {children}
       </div>
@@ -63,7 +54,6 @@ class Parallax extends React.Component {
 }
 
 Parallax.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   filter: PropTypes.bool,
   children: PropTypes.node,
@@ -71,4 +61,4 @@ Parallax.propTypes = {
   image: PropTypes.string
 };
 
-export default withStyles(parallaxStyle)(Parallax);
+export default Parallax;

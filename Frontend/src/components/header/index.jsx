@@ -8,14 +8,15 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
-import Button from "@material-ui/core/Button";
 import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 // core components
+import BotonLink from "../buttons/botonLink";
 import styles from "./styles";
 
+@withStyles(styles)
 class Header extends React.Component {
     constructor(props) {
       super(props);
@@ -76,31 +77,22 @@ class Header extends React.Component {
               <Toolbar className={classes.container}>
                 <div className={classes.flex}>
                   {srcLogo ? (<img alt="plataforma10" src={srcLogo} className={classes.logo}/>) : (null)}                  
-                  <Button className={classes.title}>            
+                  <BotonLink path="/" color="transparent" className={classes.title}>         
                     {brand}
-                  </Button>
+                  </BotonLink>
                 </div>
                 <Hidden smDown implementation="css">
                   {rightLinks}
                 </Hidden>
                 <Hidden mdUp>
-                  <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    onClick={this.handleDrawerToggle}>
+                  <IconButton color="inherit" aria-label="open drawer" onClick={this.handleDrawerToggle}>
                     <Menu />
                   </IconButton>
                 </Hidden>
               </Toolbar>
               <Hidden mdUp implementation="css">
-                <Drawer
-                  variant="temporary"
-                  anchor={"right"}
-                  open={this.state.mobileOpen}
-                  classes={{
-                    paper: classes.drawerPaper
-                  }}
-                  onClose={this.handleDrawerToggle}>
+                <Drawer variant="temporary" anchor={"right"} open={this.state.mobileOpen}
+                  classes={{ paper: classes.drawerPaper }} onClose={this.handleDrawerToggle}>
                   <div className={classes.appResponsive}>
                     {rightLinks}
                   </div>
@@ -116,7 +108,6 @@ Header.defaultProp = {
 };
 
 Header.propTypes = {
-    classes: PropTypes.object.isRequired,
     color: PropTypes.oneOf([
     "primary",
     "info",
@@ -133,12 +124,6 @@ Header.propTypes = {
     brand: PropTypes.string,
     fixed: PropTypes.bool,
     absolute: PropTypes.bool,
-    // this will cause the sidebar to change the color from
-    // this.props.color (see above) to changeColorOnScroll.color
-    // when the window.pageYOffset is heigher or equal to
-    // changeColorOnScroll.height and then when it is smaller than
-    // changeColorOnScroll.height change it back to
-    // this.props.color (see above)
     changeColorOnScroll: PropTypes.shape({
         height: PropTypes.number.isRequired,
         color: PropTypes.oneOf([
@@ -156,4 +141,4 @@ Header.propTypes = {
     })
 };
 
-export default withStyles(styles)(Header);
+export default Header;

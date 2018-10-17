@@ -45,7 +45,7 @@ const styles = {
     fontSize: "18px",
     borderRadius: "3px",
     textTransform: "none",
-    color: "inherit",
+    color: "#fff",
     "&:hover,&:focus": {
       color: "inherit",
       background: "transparent"

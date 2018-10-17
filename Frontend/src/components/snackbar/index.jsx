@@ -8,8 +8,9 @@ import IconButton from "@material-ui/core/IconButton";
 // @material-ui/icons
 import Close from "@material-ui/icons/Close";
 
-import snackbarContentStyle from "./styles";
+import styles from "./styles";
 
+@withStyles(styles)
 class SnackbarContent extends Component {
   constructor(props) {
     super(props);
@@ -65,4 +66,4 @@ SnackbarContent.propTypes = {
   icon: PropTypes.func
 };
 
-export default withStyles(snackbarContentStyle)(SnackbarContent);
+export default SnackbarContent;

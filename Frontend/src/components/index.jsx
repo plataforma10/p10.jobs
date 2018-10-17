@@ -13,7 +13,7 @@ import NoMatch from "./notMatch";
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from './styles';
 
-
+@withStyles(styles)
 class App extends Component
 {  
   componentDidMount() {    
@@ -40,4 +40,4 @@ class App extends Component
   }
 }
 
-export default withStyles(styles)(App);
+export default App;

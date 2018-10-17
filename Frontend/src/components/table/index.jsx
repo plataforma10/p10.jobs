@@ -9,10 +9,11 @@ import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 // core components
-import tableStyle from "./styles";
+import styles from "./styles";
 
 import TableItemPosicion from './tableItemPosicion';
 
+@withStyles(styles)
 class CustomTable extends Component {
   render() {
     const { classes, tableHead, color, children } = this.props;
@@ -68,4 +69,4 @@ CustomTable.propTypes = {
 };
 
 export { TableItemPosicion };
-export default withStyles(tableStyle)(CustomTable);
+export default CustomTable;

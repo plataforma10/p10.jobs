@@ -4,10 +4,13 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Layout from '../layout';
 import GridContainer from '../../grid/gridContainer';
 import GridItem from '../../grid/gridItem';
+import { HeaderDefecto } from '../../HOCs';
 
 // Estilos
 import styles from './styles';
 
+@HeaderDefecto
+@withStyles(styles)
 class NotFound extends Component {
 
     render() {
@@ -18,7 +21,7 @@ class NotFound extends Component {
               <GridItem>
                 <div className={classes.container}>
                   <div className={classes.title}>
-                    <h1>Pagina no Encontrada</h1>
+                    <h2>Pagina no Encontrada</h2>
                   </div>
                 </div>
               </GridItem>
@@ -28,4 +31,4 @@ class NotFound extends Component {
     };
 }
 
-export default withStyles(styles)(NotFound)
+export default NotFound

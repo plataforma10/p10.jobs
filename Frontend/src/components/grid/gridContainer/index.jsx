@@ -8,6 +8,7 @@ import PropTypes from 'prop-types';
 // Estilos
 import styles from '../styles';
 
+@withStyles(styles)
 class GridContainer extends PureComponent {
     render() {
         const { classes, children, className, ...rest } = this.props;
@@ -28,4 +29,4 @@ GridContainer.propTypes = {
     className: PropTypes.string
 };
 
-export default withStyles (styles)(GridContainer);
+export default GridContainer;

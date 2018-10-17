@@ -6,6 +6,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // Estilos
 import styles from '../styles';
 
+@withStyles(styles)
 class GridItem extends PureComponent {
     render() {
         const { classes, children, className, ...rest } = this.props;
@@ -17,4 +18,4 @@ class GridItem extends PureComponent {
     }
 };
 
-export default withStyles(styles)(GridItem);
+export default GridItem;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from "prop-types";
 // material-ui components
 import withStyles from "@material-ui/core/styles/withStyles";
 import Slide from "@material-ui/core/Slide";
@@ -11,7 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Close from "@material-ui/icons/Close";
 // core components
 import Boton from '../buttons/boton';
-import GridItem from '../grid/gridItem';
 import CustomInput from '../customInput';
 import styles from "./styles";
 import Upload from '../buttons/upload';
@@ -21,6 +21,7 @@ function Transition(props) {
   return <Slide direction="down" {...props} />;
 }
 
+@withStyles(styles)
 class Modal extends React.Component{
   constructor(props) {
     super(props);
@@ -28,30 +29,18 @@ class Modal extends React.Component{
       modal: false
     };
   }
-  handleClickOpen(modal) {
-    var x = [];
-    x[modal] = true;
-    this.setState(x);
+  handleClickOpen() {
+    this.setState({
+      modal: true
+    });
   }
-  handleClose(modal) {
-    var x = [];
-    x[modal] = false;   
 
-    this.setState(x);
+  handleClose() {
+    this.setState({
+      modal: false
+    });
   }
-  validarCampos(){
-    const { nombre, apellido, email } = this.props;
-    if(!nombre.value){      
-      return false;
-    }
-    if(!apellido.value){      
-      return false;
-    }
-    if(!email.value){
-      return false;
-    }    
-    return true;
-  }
+
   acceptPostulacion(modal){    
     const { nombre, apellido, email } = this.props;        
     if(this.validarCampos()){
@@ -65,91 +54,47 @@ class Modal extends React.Component{
         console.log(err);
       });
     }   
-  }  
+  }
+
+  validarCampos(){
+    const { nombre, apellido, email } = this.props;
+    if(!nombre.value){      
+      return false;
+    }
+    if(!apellido.value){      
+      return false;
+    }
+    if(!email.value){
+      return false;
+    }    
+    return true;
+  }
 
   render(){
-    const { classes } = this.props;
+    const { classes, btnPosicion } = this.props;
     return (
-      <div>
-        <Boton
-          color="rose"
-          round
-          onClick={() => this.handleClickOpen("modal")}>
+      <div className={`${classes.container} ${classes[btnPosicion]}`}>
+        <Boton color="rose" onClick={() =>this.handleClickOpen()}>
           {this.props.nombre}
         </Boton>
-        <Dialog
-          classes={{
-            root: classes.center,
-            paper: classes.modal
-          }}
-          open={this.state.modal}
-          TransitionComponent={Transition}
-          keepMounted
-          onClose={() => this.handleClose("modal")}
-          aria-labelledby="modal-slide-title"
-          aria-describedby="modal-slide-description">
-          <DialogTitle
-            id="classic-modal-slide-title"
-            disableTypography
-            className={classes.modalHeader}>
-            <IconButton
-              className={classes.modalCloseButton}
-              key="close"
-              aria-label="Close"
-              color="inherit"
-              onClick={() => this.handleClose("modal")}>
+        <Dialog classes={{ root: classes.center, paper: classes.modal }} open={this.state.modal} TransitionComponent={Transition} keepMounted
+          onClose={() =>this.handleClose()} aria-labelledby="modal-slide-title" aria-describedby="modal-slide-description">
+          <DialogTitle id="classic-modal-slide-title" disableTypography className={classes.modalHeader}>
+            <IconButton className={classes.modalCloseButton} key="close" aria-label="Close"
+              color="inherit" onClick={() =>this.handleClose()}>
               <Close className={classes.modalClose} />
             </IconButton>
             <h4 className={classes.modalTitle}>Completa el siguiente formulario</h4>
           </DialogTitle>
-          <DialogContent
-            id="modal-slide-description"
-            className={classes.modalBody}>
-              <GridItem xs={12} sm={12} md={4}>
-                <CustomInput
-                    labelText="Nombre"
-                    id="nombre"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-                <CustomInput
-                    labelText="Apellido"
-                    id="apellido"
-                    formControlProps={{
-                        fullWidth: true                      
-                    }}
-                />
-            </GridItem>
-            <GridItem xs={12} sm={12} md={4}>
-                <CustomInput
-                    labelText="Email"
-                    id="email"
-                    formControlProps={{
-                        fullWidth: true
-                    }}
-                />
-            </GridItem>
-          <GridItem xs={12} sm={12} md={4}>
-            <Upload nombre={"CV"}/>
-          </GridItem>
+          <DialogContent id="modal-slide-description" className={classes.modalBody}>
+            <CustomInput labelText="Nombre" id="nombre" formProps={{ fullWidth: true }}/>
+            <CustomInput labelText="Apellido" id="apellido" formProps={{ fullWidth: true }}/>
+            <CustomInput labelText="Email" id="email" formProps={{ fullWidth: true }}/>
+            <Upload nombre={"Subi tu CV"}/>
           </DialogContent>
-          <DialogActions
-            className={classes.modalFooter}>
-            <Boton
-              onClick={() => this.handleClose("modal")}
-            >
-              Cancelar
-            </Boton>
-            <Boton
-              onClick={
-                () => this.acceptPostulacion("modal")
-              }
-              color="success">
-              Aceptar
-            </Boton> 
+          <DialogActions className={classes.modalFooter}>
+            <div className={classes.modalBoton}><Boton onClick={() => this.handleClose()} color="danger"> Cancelar </Boton></div>
+            <div className={`${classes.modalBoton} right`}><Boton onClick={() => this.acceptPostulacion() } color="success"> Aceptar </Boton></div>     
           </DialogActions>
         </Dialog>
       </div>
@@ -157,4 +102,12 @@ class Modal extends React.Component{
   }
 }
 
-export default withStyles(styles)(Modal);
+Modal.defaultProps = {
+  btnPosicion: "right"
+};
+
+Modal.propTypes = {
+  btnPosicion: PropTypes.string,
+};
+
+export default Modal;

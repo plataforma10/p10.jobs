@@ -1,28 +1,28 @@
-import React from "react";
-// nodejs library that concatenates classes
+import React, { PureComponent } from "react";
+// nodejs library
 import classNames from "classnames";
-// nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
+// styles
+import styles from "./styles";
 
-// core components
-import style from "./styles";
-
-function CardBody({ ...props }) {
-  const { classes, className, children, plain, profile, ...rest } = props;
-  const cardBodyClasses = classNames({
-    [classes.cardBody]: true,
-    [classes.cardBodyPlain]: plain,
-    [classes.cardBodyProfile]: profile,
-    [className]: className !== undefined
-  });
-  return (
-    <div className={cardBodyClasses} {...rest}>
-      {children}
-    </div>
-  );
+@withStyles(styles)
+class CardBody extends PureComponent {
+  render(){
+    const { classes, className, children, plain, profile, ...rest } = this.props;
+    const cardBodyClasses = classNames({
+      [classes.cardBody]: true,
+      [classes.cardBodyPlain]: plain,
+      [classes.cardBodyProfile]: profile,
+      [className]: className !== undefined
+    });
+    return (
+      <div className={cardBodyClasses} {...rest}>
+        {children}
+      </div>
+    );
+  }
 }
 
 CardBody.propTypes = {
@@ -32,4 +32,4 @@ CardBody.propTypes = {
   profile: PropTypes.bool
 };
 
-export default withStyles(style)(CardBody);
+export default CardBody;

@@ -6,10 +6,9 @@ import PropTypes from "prop-types";
 import classNames from "classnames";
 import { List, ListItem, withStyles } from "@material-ui/core";
 import SocialIcon from "../icons/socialIcon";
+import styles from "./styles";
 
-// @material-ui/icons
-import footerStyle from "./styles";
-
+@withStyles(styles)
 class Footer extends Component {
   constructor(){
     super();
@@ -52,7 +51,6 @@ class Footer extends Component {
               <ListItem className={classes.inlineBlock}>
                 <span className={classes.icon}>
                   <SocialIcon icon="facebook" href="http://www.google.com.ar" tarjetBlanck/>
-                  <SocialIcon icon="google" />
                   <SocialIcon icon="twitter" />
                   <SocialIcon icon="linkedin" />
                 </span>
@@ -66,8 +64,7 @@ class Footer extends Component {
 }
 
 Footer.propTypes = {
-  classes: PropTypes.object.isRequired,
   whiteFont: PropTypes.bool
 };
 
-export default withStyles(footerStyle)(Footer);
+export default Footer;

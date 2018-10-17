@@ -9,8 +9,9 @@ import Info from "@material-ui/icons/Info";
 import Tooltip from "@material-ui/core/Tooltip";
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import tableStyle from "../styles";
+import styles from "../styles";
 
+@withStyles(styles)
 class TableItemPosicion extends PureComponent {
     render() {
         const { classes, color, posicion } = this.props;
@@ -62,4 +63,4 @@ TableItemPosicion.propTypes = {
     ])
 };
 
-export default withStyles(tableStyle)(TableItemPosicion);
+export default TableItemPosicion;

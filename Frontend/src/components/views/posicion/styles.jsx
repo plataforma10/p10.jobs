@@ -3,14 +3,13 @@ import { container, main } from '../../coreStyles';
 const posicionStyle = {
     container,
     main,
-    title: {
-        fontSize: "4.2rem",
-        fontWeight: "600",
-        display: "inline-block",
-        position: "relative"
-    },
     buttonRight: {
         textAlign: "right"
+    },
+    "@media (max-width: 767.98px)": {
+        title: {
+            fontSize: "2.3125rem",
+        }
     }
 }
 

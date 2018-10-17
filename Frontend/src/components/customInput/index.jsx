@@ -12,8 +12,9 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Clear from "@material-ui/icons/Clear";
 import Check from "@material-ui/icons/Check";
 // Estilos
-import InputStyle from './styles';
+import styles from './styles';
 
+@withStyles(styles)
 class CustomInput extends PureComponent {
     render() {             
         const { classes, formProps, labelProps, inputProps, labelText,
@@ -60,4 +61,4 @@ CustomInput.propTypes = {
     disabled: PropTypes.bool
   };
 
-export default withStyles(InputStyle)(CustomInput);
+export default CustomInput;

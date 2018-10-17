@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // nodejs library to set properties for components
@@ -11,30 +11,28 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import CardHeader from "./cardHeader";
 import CardFooter from "./cardFooter";
 import CardBody from "./cardBody";
-import cardStyle from "./styles";
+import styles from "./styles";
 
-function Card({ ...props }) {
-  const {
-    classes,
-    className,
-    children,
-    plain,
-    profile,
-    chart,
-    ...rest
-  } = props;
-  const cardClasses = classNames({
-    [classes.card]: true,
-    [classes.cardPlain]: plain,
-    [classes.cardProfile]: profile,
-    [classes.cardChart]: chart,
-    [className]: className !== undefined
-  });
-  return (
-    <div className={cardClasses} {...rest}>
-      {children}
-    </div>
-  );
+@withStyles(styles)
+class Card extends PureComponent {
+  render(){
+    const { classes, className, children, plain,
+      profile, chart, ...rest } = this.props;
+
+    const cardClasses = classNames({
+      [classes.card]: true,
+      [classes.cardPlain]: plain,
+      [classes.cardProfile]: profile,
+      [classes.cardChart]: chart,
+      [className]: className !== undefined
+    });
+
+    return (
+      <div className={cardClasses} {...rest}>
+        {children}
+      </div>
+    );
+  }
 }
 
 Card.propTypes = {
@@ -46,4 +44,4 @@ Card.propTypes = {
 };
 
 export { CardBody, CardFooter, CardHeader };
-export default withStyles(cardStyle)(Card);
+export default Card;

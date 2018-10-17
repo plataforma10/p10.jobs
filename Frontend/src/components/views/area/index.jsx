@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import classNames from "classnames";
 
 import axios from 'axios';
@@ -9,6 +8,7 @@ import GridContainer from '../../grid/gridContainer';
 import GridItem from '../../grid/gridItem';
 import withStyles from "@material-ui/core/styles/withStyles";
 import { setHeader } from '../../../actions';
+import { reduxConnect } from '../../HOCs';
 import BotonLink from '../../buttons/botonLink';
 
 // Estilos
@@ -17,6 +17,8 @@ import estilos from './styles';
 // Views
 import Layout from '../layout';
 
+@reduxConnect
+@withStyles(estilos)
 class Area extends Component {
     constructor() {
         super();
@@ -56,10 +58,4 @@ class Area extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        state: state.app
-    }
-}
-
-export default connect(mapStateToProps)(withStyles(estilos)(Area));
+export default Area;

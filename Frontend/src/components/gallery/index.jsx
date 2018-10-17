@@ -6,6 +6,7 @@ import styles from './styles';
 
 import GalleryItem from './galleryItem';
 
+@withStyles(styles)
 class Gallery extends PureComponent {
     render(){
         const { classes, children } = this.props;
@@ -24,4 +25,4 @@ class Gallery extends PureComponent {
   };
   
   export { GalleryItem };
-  export default withStyles(styles)(Gallery);
+  export default Gallery;

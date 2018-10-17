@@ -1,39 +1,33 @@
-import React from "react";
-// nodejs library that concatenates classes
+import React, { PureComponent } from "react";
+// nodejs library
 import classNames from "classnames";
-// nodejs library to set properties for components
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// @material-ui/icons
+// styles
+import styles from "./styles";
 
-// core components
-import cardHeaderStyle from "./styles";
+@withStyles(styles)
+class CardHeader extends PureComponent {
+  render() {    
+    const { classes, className, children, color, plain,
+      stats, icon, ...rest } = this.props;
 
-function CardHeader({ ...props }) {
-  const {
-    classes,
-    className,
-    children,
-    color,
-    plain,
-    stats,
-    icon,
-    ...rest
-  } = props;
-  const cardHeaderClasses = classNames({
-    [classes.cardHeader]: true,
-    [classes[color + "CardHeader"]]: color,
-    [classes.cardHeaderPlain]: plain,
-    [classes.cardHeaderStats]: stats,
-    [classes.cardHeaderIcon]: icon,
-    [className]: className !== undefined
-  });
-  return (
-    <div className={cardHeaderClasses} {...rest}>
-      {children}
-    </div>
-  );
+    const cardHeaderClasses = classNames({
+      [classes.cardHeader]: true,
+      [classes[color + "CardHeader"]]: color,
+      [classes.cardHeaderPlain]: plain,
+      [classes.cardHeaderStats]: stats,
+      [classes.cardHeaderIcon]: icon,
+      [className]: className !== undefined
+    });
+
+    return (
+      <div className={cardHeaderClasses} {...rest}>
+        {children}
+      </div>
+    );
+  }
 }
 
 CardHeader.propTypes = {
@@ -52,4 +46,4 @@ CardHeader.propTypes = {
   icon: PropTypes.bool
 };
 
-export default withStyles(cardHeaderStyle)(CardHeader);
+export default CardHeader;

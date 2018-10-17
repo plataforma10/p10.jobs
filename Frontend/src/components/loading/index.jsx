@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
 import GridContainer from '../grid/gridContainer';
-import Style from './styles';
+import styles from './styles';
 import withStyles from "@material-ui/core/styles/withStyles";
 
+@withStyles(styles)
 class Loading extends Component {
     render() {
         const { Nombre, classes } = this.props;
@@ -15,4 +16,4 @@ class Loading extends Component {
     }
 }
 
-export default withStyles(Style)(Loading);
+export default Loading;

@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import GridListTile from '@material-ui/core/GridListTile';
 import { withStyles } from '@material-ui/core/styles';
-import GalerryItemStyle from './styles';
+import styles from './styles';
 import { Link } from "react-router-dom";
 
-
+@withStyles(styles)
 class GalleryItem extends PureComponent {
     render() {
         const { classes, element } = this.props;
@@ -24,4 +24,4 @@ class GalleryItem extends PureComponent {
     };
 }
 
-export default withStyles(GalerryItemStyle)(GalleryItem);
+export default GalleryItem;

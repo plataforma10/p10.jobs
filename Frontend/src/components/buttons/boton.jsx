@@ -7,8 +7,9 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Estilos
-import botonStyle from './styles.jsx';
+import styles from './styles.jsx';
 
+@withStyles(styles)
 class Boton extends PureComponent {
     render() {
         const { classes, color, round, children, fullWidth, disabled,
@@ -50,4 +51,4 @@ Boton.propTypes = {
     ])
 };
 
-export default withStyles (botonStyle)(Boton);
+export default Boton;
