@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
+import GridListTile from '@material-ui/core/GridListTile';
 import { withStyles } from '@material-ui/core/styles';
 import GalerryItemStyle from './styles';
 import { Link } from "react-router-dom";
@@ -13,16 +12,13 @@ class GalleryItem extends PureComponent {
         const { Titulo, SubTitulo, Imagen, Path } = element;
 
         return(
-            <div className={classes.contenedor} style={ Imagen ? { backgroundImage: `url(${Imagen})` } : {}}>
-                <GridListTileBar title={Titulo} subtitle={<span>{SubTitulo}</span>}
-                    actionIcon={
-                        <Link to={`/area/${Path}`}>
-                            <IconButton className={classes.icon}>
-                                <InfoIcon />
-                            </IconButton>
-                        </Link>
-                    }
-                />
+            <div className={classes.contenedor}>
+                <GridListTile key={Imagen}>
+                    <Link to={`/area/${Path}`}>
+                        <img src={Imagen} alt={Titulo} className={classes.imagen}/>
+                        <GridListTileBar title={Titulo} subtitle={<span>{SubTitulo}</span>}/>
+                    </Link>
+                </GridListTile>
             </div>
         );
     };

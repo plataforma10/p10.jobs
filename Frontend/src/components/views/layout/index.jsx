@@ -33,7 +33,7 @@ class Layout extends Component {
         return (
             <div>
                 <Header brand="Plataforma 10" fixed color="transparent"
-                    changeColorOnScroll={{ height: 400, color: "naranja" }}
+                    changeColorOnScroll={{ height: 120, color: "naranja" }}
                     srcLogo={`${logo}`}
                     {...rest} />
                 <Parallax image={`${this.props.state.newState.header.Imagen}`}>

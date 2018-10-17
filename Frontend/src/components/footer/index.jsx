@@ -25,7 +25,7 @@ class Footer extends Component {
     return (
       <footer className={footerClasses}>
         <div className={classes.container}>
-          <div className={classes.left}>
+          <div className={classes.botonesNavegacion}>
             <List className={classes.list}>
               <ListItem className={classes.inlineBlock}>
                 <a href="https://www.plataforma10.com.ar/" target="_blanck" className={classes.block}>
@@ -44,7 +44,7 @@ class Footer extends Component {
               </ListItem>
             </List>
           </div>
-          <div className={classes.right}>
+          <div className={classes.redesSociales}>
           <List className={classes.list}>
               <ListItem className={classes.inlineBlock}>
                 <span className={classes.block}> Copyright &copy; {1900 + new Date().getYear()} Plataforma 10 </span>

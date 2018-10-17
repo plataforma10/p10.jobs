@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import GridListTile from '@material-ui/core/GridListTile';
 import Gallery, { GalleryItem } from '../../../gallery';
 import axios from 'axios';
 import Loading from '../../../loading'
@@ -45,11 +44,9 @@ class AreasSeccion extends Component {
                     this.props.state.newState.areas.length > 0 ? 
                     (<Gallery>
                         {this.props.state.newState.areas.map(item => (
-                            <GridListTile key={item.Path} cols={1}>
-                                <GalleryItem element={item} />
-                            </GridListTile>
+                            <GalleryItem key={item.Path} element={item} />
                         ))}
-                        </Gallery>) : (<Loading />)
+                    </Gallery>) : (<Loading />)
                     }
                 </GridContainer>
                 : <GridContainer justify="center">

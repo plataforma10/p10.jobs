@@ -11,13 +11,19 @@ const footerStyle = {
     position: "relative",
     display: "block"
   },
-  left: {
-    float: "left",
+  botonesNavegacion: {
     display: "block"
   },
-  right: {
-    float: "right",
+  redesSociales: {
     display: "block"
+  },
+  "@media (min-width: 992px)": {
+    redesSociales: {
+      float: "right"
+    },
+    botonesNavegacion: {
+      float: "left"
+    }
   },
   footer: {
     padding: "0.9375rem 0",
