@@ -1,12 +1,12 @@
 version: "3.3"
 
 services:
-  web:
-    build: ./Frontend
-    ports:
-      - 8080:8080
-    depends_on: 
-      - back
+  #web:
+  #  build: ./Frontend
+  #  ports:
+  #    - 8080:8080
+  #  depends_on: 
+  #    - back
   back:
     build: ./Backend
     ports:

@@ -8,25 +8,32 @@ const layoutStyle = {
         textAlign: "left"
     },
     title: {
+        fontSize: "2rem",
         fontWeight: "600",
         display: "inline-block",
         position: "relative"
     },
     subtitle: {
-        maxWidth: "500px",
-        margin: "10px 0 0"
+        margin: "10px 0",
+        fontSize: "1rem"
     },
     icon: {
         fontSize: "32px"
     },
     "@media (min-width: 768px)": {
         title: {
-            fontSize: "4rem"
+            fontSize: "3rem"
+        },
+        subtitle: {
+            fontSize: "1.5625rem"
         }
     },
     "@media (min-width: 1200px)": {
         title: {
             fontSize: "4.2rem"
+        },
+        subtitle: {
+            fontSize: "1.5625rem"
         }
     }
 }

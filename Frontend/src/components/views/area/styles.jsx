@@ -11,6 +11,10 @@ const areaStyle = {
     },
     buttonRight: {
         textAlign: "right"
+    },
+    noPadding: {
+        paddingRight: "0",
+        paddingLeft: "0"
     }
 }
 

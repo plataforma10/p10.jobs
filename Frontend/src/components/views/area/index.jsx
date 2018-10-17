@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import classNames from "classnames";
 
 import axios from 'axios';
 // Componentes
@@ -38,14 +39,12 @@ class Area extends Component {
 
     render() {
         const { classes } = this.props;
-
+        
         return (
             <Layout className={classes.main}>
                 <GridContainer>
-                    <GridItem>
-                        <div className={classes.container}>
+                    <GridItem className={classNames(classes.container, classes.noPadding)}>
                             <TablaPosiciones area={this.props.match.params.area} />
-                        </div>
                     </GridItem>
                 </GridContainer>
             </Layout>
