@@ -2,31 +2,30 @@ import {  warningColor,  primaryColor,  dangerColor,  successColor,
   infoColor,  roseColor,  grayColor,  defaultFont } from "../coreStyles";
 
 const tableStyle = theme => ({
-  warningTableHeader: {
+  warning: {
     color: warningColor
   },
-  primaryTableHeader: {
+  primary: {
     color: primaryColor
   },
-  dangerTableHeader: {
+  danger: {
     color: dangerColor
   },
-  successTableHeader: {
+  success: {
     color: successColor
   },
-  infoTableHeader: {
+  info: {
     color: infoColor
   },
-  roseTableHeader: {
+  rose: {
     color: roseColor
   },
-  grayTableHeader: {
+  gray: {
     color: grayColor
   },
   table: {
     marginBottom: "0",
     width: "100%",
-    maxWidth: "100%",
     backgroundColor: "transparent",
     borderSpacing: "0",
     borderCollapse: "collapse"
@@ -38,14 +37,30 @@ const tableStyle = theme => ({
   },
   tableCell: {
     ...defaultFont,
-    lineHeight: "1.42857143",
     padding: "12px 8px",
-    verticalAlign: "middle"
+    verticalAlign: "middle",
+    lineHeight: '25px'
+  },
+  visiblemd: {
+    display: 'none'
   },
   tableResponsive: {
     width: "100%",
     marginTop: theme.spacing.unit * 3,
     overflowX: "auto"
+  },
+  "@media (max-width: 767.98px)": {    
+    visiblexs: {
+      display: 'block'
+    }
+  },
+  "@media (min-width: 768px)": {
+    visiblexs: {
+      display: 'none'
+    },
+    visiblemd: {
+      display: 'table-cell'
+    }
   }
 });
 

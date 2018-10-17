@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+// Componentes
 import Gallery, { GalleryItem } from '../../../gallery';
 import axios from 'axios';
 import Loading from '../../../loading'
@@ -35,25 +35,28 @@ class AreasSeccion extends Component {
     }
 
     render(){
-        return(
-            <div>
-                {
-                    !this.state.error ?
+        if(this.state.error){
+            return(
                 <GridContainer justify="center">
-                    {
-                    this.props.state.newState.areas.length > 0 ? 
-                    (<Gallery>
-                        {this.props.state.newState.areas.map(item => (
-                            <GalleryItem key={item.Path} element={item} />
-                        ))}
-                    </Gallery>) : (<Loading />)
-                    }
+                    <h4>Ah ocurrido un error</h4>
                 </GridContainer>
-                : <GridContainer justify="center">
-                    <h4>Ah Ocurrido Un Error</h4>
-                </GridContainer>
-                }
-            </div>
+            );
+        }
+
+        if(!this.props.state.newState.areas.length){
+            return(
+                <Loading />
+            );
+        }
+
+        return(
+            <GridContainer justify="center">
+                <Gallery>
+                    {this.props.state.newState.areas.map(item => (
+                        <GalleryItem key={item.Path} element={item} />
+                    ))}
+                </Gallery>
+            </GridContainer>
         );
     };
 }

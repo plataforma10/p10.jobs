@@ -9,6 +9,7 @@ import GridContainer from '../../grid/gridContainer';
 import GridItem from '../../grid/gridItem';
 import withStyles from "@material-ui/core/styles/withStyles";
 import { setHeader } from '../../../actions';
+import BotonLink from '../../buttons/botonLink';
 
 // Estilos
 import estilos from './styles';
@@ -45,6 +46,9 @@ class Area extends Component {
                 <GridContainer>
                     <GridItem className={classNames(classes.container, classes.noPadding)}>
                             <TablaPosiciones area={this.props.match.params.area} />
+                    </GridItem>
+                    <GridItem className={classNames(classes.container)}>
+                        <BotonLink path='/' color='info'>Volver atras</BotonLink>
                     </GridItem>
                 </GridContainer>
             </Layout>
