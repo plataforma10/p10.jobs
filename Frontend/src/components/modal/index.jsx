@@ -93,8 +93,8 @@ class Modal extends React.Component{
             <Upload nombre={"Subi tu CV"}/>
           </DialogContent>
           <DialogActions className={classes.modalFooter}>
-            <div className={classes.modalBoton}><Boton onClick={() => this.handleClose()} color="danger"> Cancelar </Boton></div>
-            <div className={`${classes.modalBoton} right`}><Boton onClick={() => this.acceptPostulacion() } color="success"> Aceptar </Boton></div>     
+            <div className={classes.modalBoton}><Boton onClick={() => this.acceptPostulacion() } color="success"> Aceptar </Boton></div>    
+            <div className={`${classes.modalBoton} right`}><Boton onClick={() => this.handleClose()} color="danger"> Cancelar </Boton></div> 
           </DialogActions>
         </Dialog>
       </div>

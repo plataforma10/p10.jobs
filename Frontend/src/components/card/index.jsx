@@ -36,7 +36,6 @@ class Card extends PureComponent {
 }
 
 Card.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   plain: PropTypes.bool,
   profile: PropTypes.bool,

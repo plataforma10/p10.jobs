@@ -20,7 +20,6 @@ class Gallery extends PureComponent {
   }
   
   Gallery.propTypes = {
-    classes: PropTypes.object.isRequired,
     titulo: PropTypes.string
   };
   

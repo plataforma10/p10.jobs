@@ -62,7 +62,7 @@ class Posicion extends Component {
                     <h1 className={classes.title}>{this.state.Titulo}</h1>
                     <span dangerouslySetInnerHTML={{__html: this.state.Descripcion}}></span>
                   </GridItem>
-                  <GridItem>
+                  <GridItem className={classes.botones}>
                       <BotonLink path={`/area/${area}`}>
                         Volver a {area}
                       </BotonLink>

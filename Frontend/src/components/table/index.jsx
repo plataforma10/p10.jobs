@@ -55,7 +55,6 @@ CustomTable.defaultProps = {
 };
 
 CustomTable.propTypes = {
-  classes: PropTypes.object.isRequired,
   color: PropTypes.oneOf([
     "warning",
     "primary",

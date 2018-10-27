@@ -51,7 +51,6 @@ TableItemPosicion.defaultProps = {
 };
   
 TableItemPosicion.propTypes = {
-    classes: PropTypes.object.isRequired,
     color: PropTypes.oneOf([
         "warning",
         "primary",

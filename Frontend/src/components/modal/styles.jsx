@@ -10,11 +10,14 @@ const modalStyle = {
     },
     modal: {
       borderRadius: "6px",
-      "@media (min-width: 576px)": {
-        minWidth: "250px"
-      },
-      "@media (min-width: 768px)": {
-        minWidth: "300px"
+      "@media (max-width: 767px), (width: 812px)": {
+        display: 'block',
+        margin: 0,
+        borderRadius: "0px",
+        maxHeight: "unset",
+        maxWidth: "unset",
+        height: "100vh",
+        width: "100%"
       },
       "@media (min-width: 992px)": {
         minWidth: "350px"
@@ -54,18 +57,30 @@ const modalStyle = {
     },
     modalBody: {
       padding: "24px",
-      position: "relative"
+      position: "relative",
+      "@media (max-width: 767px), (width: 812px)": {
+        overflowY: "unset"
+      }      
     },
     modalFooter: {
       padding: "24px",
       paddingTop: "0",
-      margin: 0
+      margin: 0,
+      "@media (max-width: 575px)": {
+        display: 'block'
+      }
     },
     modalBoton:{
       margin: '0px',
       width: '50%',
       '&.right':{
         textAlign: 'right'
+      },
+      "@media (max-width: 575px)": {        
+        width: '100%',
+        "& button": {
+          width: '100%'
+        }
       }
     }
   };

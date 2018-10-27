@@ -31,7 +31,6 @@ class CardHeader extends PureComponent {
 }
 
 CardHeader.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   color: PropTypes.oneOf([
     "warning",

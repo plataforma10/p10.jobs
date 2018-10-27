@@ -31,7 +31,6 @@ class CardFooter extends PureComponent {
 }
 
 CardFooter.propTypes = {
-  classes: PropTypes.object.isRequired,
   className: PropTypes.string,
   plain: PropTypes.bool,
   profile: PropTypes.bool,
