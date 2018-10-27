@@ -6,7 +6,7 @@ const styles = {
     display: "flex",
     border: "0",
     borderRadius: "3px",
-    padding: "0.625rem 0",
+    padding: "0.50rem 0",
     marginBottom: "20px",
     color: "#555",
     width: "100%",
@@ -41,13 +41,13 @@ const styles = {
   },
   title: {
     ...defaultFont,
-    lineHeight: "30px",
+    lineHeight: "10px",
     fontSize: "18px",
     borderRadius: "3px",
     textTransform: "none",
     color: "#fff",
     "&:hover,&:focus": {
-      color: "inherit",
+      color: "#fff",
       background: "transparent"
     }
   },
@@ -142,7 +142,7 @@ const styles = {
         zIndex: 5
     },
     logo: {
-      maxHeight: "50px"
+      maxHeight: "48px"
     }
 };
 

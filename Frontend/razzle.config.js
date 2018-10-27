@@ -16,7 +16,11 @@ module.exports = {
       new webpack.DefinePlugin(
       { 
         'process.env.HOST_BACK': JSON.stringify(env.HOST_BACK),
-        'process.env.PORT': JSON.stringify(env.PORT)
+        'process.env.PORT': JSON.stringify(env.PORT),
+        'process.env.Facebook': JSON.stringify(env.Facebook) || "/",
+        'process.env.Twitter': JSON.stringify(env.Twitter) || "/",
+        'process.env.Linkedin': JSON.stringify(env.Linkedin) || "/",
+        'process.env.Instagram': JSON.stringify(env.Instagram) || "/"
       })
 	);
 	

@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { Component } from "react";
+import React, { PureComponent } from "react";
 // nodejs library to set properties for components
 import PropTypes from "prop-types";
 // nodejs library that concatenates classes
@@ -7,13 +7,10 @@ import classNames from "classnames";
 import { List, ListItem, withStyles } from "@material-ui/core";
 import SocialIcon from "../icons/socialIcon";
 import styles from "./styles";
+import { Link } from "react-router-dom";
 
 @withStyles(styles)
-class Footer extends Component {
-  constructor(){
-    super();
-  }
-
+class Footer extends PureComponent {
   render(){
     const { classes, whiteFont } = this.props;
 
@@ -27,17 +24,17 @@ class Footer extends Component {
           <div className={classes.botonesNavegacion}>
             <List className={classes.list}>
               <ListItem className={classes.inlineBlock}>
-                <a href="https://www.plataforma10.com.ar/" target="_blanck" className={classes.block}>
+                <a href="https://www.plataforma10.com.ar/" target="_blank" className={classes.block}>
                   Plataforma 10
                 </a>
               </ListItem>
               <ListItem className={classes.inlineBlock}>
-                <a href="/" className={classes.block}>
+                <Link to="/" className={classes.block}>
                   Home
-                </a>
+                </Link>
               </ListItem>
               <ListItem className={classes.inlineBlock}>
-                <a href="https://www.plataforma10.com.ar/blog"  target="_blanck" className={classes.block}>
+                <a href="https://www.plataforma10.com.ar/blog"  target="_blank" className={classes.block}>
                   Blog
                 </a>
               </ListItem>
@@ -50,9 +47,10 @@ class Footer extends Component {
               </ListItem>
               <ListItem className={classes.inlineBlock}>
                 <span className={classes.icon}>
-                  <SocialIcon icon="facebook" href="http://www.google.com.ar" tarjetBlanck/>
-                  <SocialIcon icon="twitter" />
-                  <SocialIcon icon="linkedin" />
+                  <SocialIcon icon="facebook" href={process.env.Facebook} tarjetBlank/>
+                  <SocialIcon icon="twitter" href={process.env.Twitter} tarjetBlank/>
+                  <SocialIcon icon="linkedin" href={process.env.Linkedin} tarjetBlank/>
+                  <SocialIcon icon="instagram" href={process.env.Instagram} tarjetBlank/>
                 </span>
               </ListItem>
             </List>

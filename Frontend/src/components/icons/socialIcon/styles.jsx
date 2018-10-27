@@ -11,6 +11,9 @@ const styles = {
     linkedin: {
         color: "#007bb6"
     },
+    instagram: {
+        color: "#fff"
+    },
     icon: {
         display: "inline-flex",
         alignSelf: "center",

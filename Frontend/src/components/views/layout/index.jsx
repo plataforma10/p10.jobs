@@ -29,9 +29,10 @@ class Layout extends Component {
                                 {this.props.state.newState.header.Descripcion}
                             </h3>
                             <span className={classes.icon}>
-                                <SocialIcon icon="facebook" href="http://www.google.com.ar" tarjetBlanck/>
-                                <SocialIcon icon="twitter" />
-                                <SocialIcon icon="linkedin" />
+                                <SocialIcon icon="facebook" href={process.env.Facebook} tarjetBlank/>
+                                <SocialIcon icon="twitter" href={process.env.Twitter} tarjetBlank/>
+                                <SocialIcon icon="linkedin" href={process.env.Linkedin} tarjetBlank/>
+                                <SocialIcon icon="instagram" href={process.env.Instagram} tarjetBlank/>
                             </span>
                         </div>
                     </GridContainer>
