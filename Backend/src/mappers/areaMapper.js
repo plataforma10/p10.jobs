@@ -11,7 +11,8 @@ class AreaMapper {
             Path: slugify(area.Nombre),
             Descripcion: area.Descripcion,
             FechaCreacion: area.createdAt,
-            Header: header
+            Header: header,
+            Activa: area.Activa
         }
     }
 
@@ -32,7 +33,8 @@ class AreaMapper {
             Path: slugify(posicion.Titulo),
             Descripcion: posicion.Descripcion,
             FechaCreacion: posicion.createdAt,
-            Localidad: posicion.Localidad
+            Localidad: posicion.Localidad,
+            Activa: posicion.Activa
         }
     }
 }
