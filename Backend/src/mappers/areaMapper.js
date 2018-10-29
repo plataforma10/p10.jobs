@@ -11,14 +11,15 @@ class AreaMapper {
             Path: slugify(area.Nombre),
             Descripcion: area.Descripcion,
             FechaCreacion: area.createdAt,
-            Header: header,
-            Activa: area.Activa
+            Header: header
         }
     }
 
     MapearPosiciones (area) {
         var posiciones = area.Posiciones.map(function (posicion) { 
-            return this.MapearPosicion(posicion);                     
+            if(posicion.Activa) {
+                return this.MapearPosicion(posicion);  
+            }                   
         }.bind(this));
 
         return {
@@ -33,8 +34,7 @@ class AreaMapper {
             Path: slugify(posicion.Titulo),
             Descripcion: posicion.Descripcion,
             FechaCreacion: posicion.createdAt,
-            Localidad: posicion.Localidad,
-            Activa: posicion.Activa
+            Localidad: posicion.Localidad
         }
     }
 }

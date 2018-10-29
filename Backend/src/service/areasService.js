@@ -13,12 +13,15 @@ class Areas {
         } catch (err) {
             var res = await axios.get(`${config.CMS}/area`);
             var areas = res.data.map(function (area) {
-                var area = areaMapper.MapearArea(area);
-                if(area.Activa){
-                    return area;
+                if(area.Activa) {
+                    return areaMapper.MapearArea(area);
                 }
-            });   
-            cacheAreas.set("areas", areas, config.CACHE_AREAS)  
+            });
+            
+            if(areas.lenght > 0) {
+                cacheAreas.set("areas", areas, config.CACHE_AREAS)
+            }
+              
             return areas;   
         }
     }
@@ -35,13 +38,13 @@ class Areas {
         } catch (err) {
             var res = await axios.get(`${config.CMS}/area`);
             var posiciones = res.data.map(function (area) {
-                var posicion = areaMapper.MapearPosiciones(area);
-                if(posicion.Activa){
-                    return posicion;
-                }
+                return areaMapper.MapearPosiciones(area);
             }); 
 
-            cacheAreas.set("posiciones", posiciones, config.CACHE_AREAS)
+            if(posiciones.lenght > 0) {
+                cacheAreas.set("posiciones", posiciones, config.CACHE_AREAS)
+            }
+
             return posiciones;
         }
     }
