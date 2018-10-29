@@ -27,11 +27,11 @@ class SocialIcon extends PureComponent {
                     <svg viewBox="-20 -20 170 170">
                     <defs>
                         <radialGradient id="rg" r="150%" cx="30%" cy="107%">
-                            <stop stop-color="#fdf497" offset="0" />
-                            <stop stop-color="#fdf497" offset="0.05" />
-                            <stop stop-color="#fd5949" offset="0.45" />
-                            <stop stop-color="#d6249f" offset="0.6" />
-                            <stop stop-color="#285AEB" offset="0.9" />
+                            <stop stopColor="#fdf497" offset="0" />
+                            <stop stopColor="#fdf497" offset="0.05" />
+                            <stop stopColor="#fd5949" offset="0.45" />
+                            <stop stopColor="#d6249f" offset="0.6" />
+                            <stop stopColor="#285AEB" offset="0.9" />
                         </radialGradient>
                     </defs>
                         <rect x="2" y="1" fill="url(#rg)" width="129" height="129" rx="15" ry="15"/>
@@ -62,7 +62,8 @@ SocialIcon.propTypes = {
         "facebook",
         "twitter",
         "google",
-        "linkedin"
+        "linkedin",
+        "instagram"
     ]),
     href: PropTypes.string,
     tarjetBlank: PropTypes.bool
