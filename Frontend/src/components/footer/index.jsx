@@ -50,7 +50,6 @@ class Footer extends PureComponent {
                   <SocialIcon icon="facebook" href={process.env.Facebook} tarjetBlank/>
                   <SocialIcon icon="twitter" href={process.env.Twitter} tarjetBlank/>
                   <SocialIcon icon="linkedin" href={process.env.Linkedin} tarjetBlank/>
-                  <SocialIcon icon="instagram" href={process.env.Instagram} tarjetBlank/>
                 </span>
               </ListItem>
             </List>

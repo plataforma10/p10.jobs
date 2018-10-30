@@ -32,7 +32,6 @@ class Layout extends Component {
                                 <SocialIcon icon="facebook" href={process.env.Facebook} tarjetBlank/>
                                 <SocialIcon icon="twitter" href={process.env.Twitter} tarjetBlank/>
                                 <SocialIcon icon="linkedin" href={process.env.Linkedin} tarjetBlank/>
-                                <SocialIcon icon="instagram" href={process.env.Instagram} tarjetBlank/>
                             </span>
                         </div>
                     </GridContainer>
@@ -40,7 +39,7 @@ class Layout extends Component {
                 <div className={classes.main}>
                     {children}
                 </div>
-              <Footer />
+                <Footer />
             </div>
         )
     };
