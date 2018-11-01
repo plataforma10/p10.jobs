@@ -1,9 +1,9 @@
 class HeaderMapper {
-    MapearHeader (header, host){
+    MapearHeader (header){
         return {
             Titulo: header.Titulo,
             Descripcion: header.Descripcion,
-            Imagen: host + header.Imagen.url,
+            Imagen: process.env.UPLOAD + header.Imagen.url,
             Seccion: header.Seccion
         }
     }

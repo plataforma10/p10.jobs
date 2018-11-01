@@ -1,5 +1,4 @@
 var axios = require('axios');
-var config = require('../settings/configuracion').Obtener();
 var NodeCache = require("node-cache");
 var areaMapper = require('../mappers/areaMapper');
 const cacheAreas = new NodeCache({ stdTTL: 100, checkperiod: 120 });
@@ -11,11 +10,11 @@ class Areas {
             var areas = cacheAreas.get("areas", true);
             return areas;
         } catch (err) {
-            var res = await axios.get(`${config.CMS}/area`);
+            var res = await axios.get(`${process.env.CMS}/area`);
             var areas = res.data.map(function (area) {
                 return areaMapper.MapearArea(area);
             });   
-            cacheAreas.set("areas", areas, config.CACHE_AREAS)  
+            cacheAreas.set("areas", areas, process.env.CACHE_AREAS)  
             return areas;   
         }
     }
@@ -30,12 +29,12 @@ class Areas {
             var posiciones = cacheAreas.get("posiciones", true);
             return posiciones;
         } catch (err) {
-            var res = await axios.get(`${config.CMS}/area`);
+            var res = await axios.get(`${process.env.CMS}/area`);
             var posiciones = res.data.map(function (area) {
                 return areaMapper.MapearPosiciones(area);
             }); 
 
-            cacheAreas.set("posiciones", posiciones, config.CACHE_AREAS)
+            cacheAreas.set("posiciones", posiciones, process.env.CACHE_AREAS)
             return posiciones;
         }
     }

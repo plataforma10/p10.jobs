@@ -1,16 +1,15 @@
 var axios = require('axios');
-var config = require('../settings/configuracion').Obtener();
 
 class Jira {
     async CrearIssue(nombre, apellido, email, archivo) {
         try{            
-            console.log(config.JIRA);
+            console.log(process.env.JIRA);
             axios({
                 method: 'post',
-                url: `${config.JIRA}/rest/api/2/issue`,
+                url: `${process.env.JIRA}/rest/api/2/issue`,
                 auth: {
-                    username: config.AuthClientId,
-                    password: config.AuthSecret
+                    username: process.env.AuthClientId,
+                    password: process.env.AuthSecret
                 },
                 data: {
                     fields: {

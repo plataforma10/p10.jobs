@@ -1,10 +1,9 @@
 var headerMapper = require("../mappers/headerMapper");
-var config = require('../settings/configuracion').Obtener(process.env.NODE_ENV);
 var slugify = require('../helpers/slugify');
 
 class AreaMapper {
     MapearArea (area) {
-        var header = area.Header ? headerMapper.MapearHeader(area.Header, config.UPLOAD) : undefined; 
+        var header = area.Header ? headerMapper.MapearHeader(area.Header) : undefined; 
         return {
             Nombre: area.Nombre,
             SubTitulo: area.SubTitulo,
