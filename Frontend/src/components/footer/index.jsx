@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 import { List, ListItem, withStyles } from "@material-ui/core";
-import SocialIcon from "../icons/socialIcon";
+import { Facebook, Linkeding, Twitter } from "../icons";
 import styles from "./styles";
 import { Link } from "react-router-dom";
 
@@ -47,9 +47,9 @@ class Footer extends PureComponent {
               </ListItem>
               <ListItem className={classes.inlineBlock}>
                 <span className={classes.icon}>
-                  <SocialIcon icon="facebook" href={process.env.Facebook} tarjetBlank/>
-                  <SocialIcon icon="twitter" href={process.env.Twitter} tarjetBlank/>
-                  <SocialIcon icon="linkedin" href={process.env.Linkedin} tarjetBlank/>
+                  <Facebook href={process.env.Facebook} target="_blank" rel="noopener noreferrer"/>
+                  <Linkeding href={process.env.Twitter} target="_blank" rel="noopener noreferrer"/>
+                  <Twitter href={process.env.Linkedin} target="_blank" rel="noopener noreferrer"/>
                 </span>
               </ListItem>
             </List>

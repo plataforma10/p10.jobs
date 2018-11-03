@@ -1,22 +1,16 @@
 const styles = {
-    facebook: {
-        color: "#3B5998"
-    },
-    google: {
-        color: "#d34836"
-    },
-    twitter: {
-        color: "#00aced"
-    },
-    linkedin: {
-        color: "#007bb6"
-    },
-    instagram: {
-        color: "#fff"
+    text: {
+        color: "#444",
+        marginLeft: "5px",
+        fontSize: "0.5em",
+        "&:hover, &:active": {
+            color: "#000"
+        }
     },
     icon: {
         display: "inline-flex",
         alignSelf: "center",
+        alignItems: "center",
         float: "left",
         "& svg":{
             height: "1em",
@@ -33,7 +27,16 @@ const styles = {
         "&baseline": {
             top: ".125em",
             position: "relative"
+        },        
+        "&:hover, &:active": {
+            "& span": {
+                textDecoration: "underline"
+            }
         }
+    },
+    defaultIcon:{
+        fontSize: 24,
+        color: "#444"
     }     
 }
 

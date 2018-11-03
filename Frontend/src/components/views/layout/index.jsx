@@ -6,7 +6,7 @@ import Parallax from '../../parallax';
 import GridContainer from '../../grid/gridContainer';
 import Footer from '../../footer';
 import logo from "../../../../public/img/logoP10.jpg";
-import SocialIcon from "../../icons/socialIcon";
+import { Facebook, Linkeding, Twitter } from "../../icons";
 import { reduxConnect } from '../../HOCs';
 
 // Estilos
@@ -28,10 +28,10 @@ class Layout extends Component {
                             <h3 className={classes.subtitle}>
                                 {this.props.state.newState.header.Descripcion}
                             </h3>
-                            <span className={classes.icon}>
-                                <SocialIcon icon="facebook" href={process.env.Facebook} tarjetBlank/>
-                                <SocialIcon icon="twitter" href={process.env.Twitter} tarjetBlank/>
-                                <SocialIcon icon="linkedin" href={process.env.Linkedin} tarjetBlank/>
+                            <span>
+                                <Facebook className={classes.icon} href={process.env.Facebook} target="_blank" rel="noopener noreferrer"/>
+                                <Linkeding className={classes.icon} href={process.env.Twitter} target="_blank" rel="noopener noreferrer"/>
+                                <Twitter className={classes.icon} href={process.env.Linkedin} target="_blank" rel="noopener noreferrer"/>
                             </span>
                         </div>
                     </GridContainer>
