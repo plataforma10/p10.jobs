@@ -12,16 +12,15 @@ class Areas {
             return areas;
         } catch (err) {
             var res = await axios.get(`${config.CMS}/area`);
-            var areas = res.data.map(function (area) {
-                if(area.Activa) {
-                    return areaMapper.MapearArea(area);
-                }
-            });
+            console.log(res.data);
+            var areas = res.data            
+                .filter(x => x.Activa && x.Posiciones.length > 0)
+                .map(area => areaMapper.MapearArea(area));
             
             if(areas.lenght > 0) {
                 cacheAreas.set("areas", areas, config.CACHE_AREAS)
             }
-              
+
             return areas;   
         }
     }
