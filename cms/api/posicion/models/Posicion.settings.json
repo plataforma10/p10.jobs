@@ -23,6 +23,11 @@
     "Localidad": {
       "default": "Buenos Aires",
       "type": "string"
+    },
+    "Activa": {
+      "default": true,
+      "type": "boolean",
+      "required": true
     }
   }
 }

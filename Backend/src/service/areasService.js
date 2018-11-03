@@ -1,21 +1,20 @@
 var axios = require('axios');
-var NodeCache = require("node-cache");
 var areaMapper = require('../mappers/areaMapper');
-const cacheAreas = new NodeCache({ stdTTL: 100, checkperiod: 120 });
+var cacheService = require('./cacheService');
 
 class Areas {
 
     async ObtenerTodas() {
         try {
-            var areas = cacheAreas.get("areas", true);
-            return areas;
+            return cacheService.Get("areas");
         } catch (err) {
             var res = await axios.get(`${process.env.CMS}/area`);
-            var areas = res.data.map(function (area) {
-                return areaMapper.MapearArea(area);
-            });   
-            cacheAreas.set("areas", areas, process.env.CACHE_AREAS)  
-            return areas;   
+            
+            var areas = res.data            
+                .filter(x => x.Activa && x.Posiciones.length > 0)
+                .map(area => areaMapper.MapearArea(area));
+
+            return cacheService.Set("areas", areas, process.env.CACHE_AREAS);   
         }
     }
 
@@ -26,16 +25,15 @@ class Areas {
 
     async ObtenerTodasPosiciones() {
         try {
-            var posiciones = cacheAreas.get("posiciones", true);
-            return posiciones;
+            return cacheService.Get("posiciones");;
         } catch (err) {
             var res = await axios.get(`${process.env.CMS}/area`);
+
             var posiciones = res.data.map(function (area) {
                 return areaMapper.MapearPosiciones(area);
             }); 
 
-            cacheAreas.set("posiciones", posiciones, process.env.CACHE_AREAS)
-            return posiciones;
+            return cacheService.Set("posiciones", posiciones, process.env.CACHE_AREASS); 
         }
     }
     

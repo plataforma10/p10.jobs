@@ -28,6 +28,11 @@
     "SubTitulo": {
       "default": "",
       "type": "string"
+    },
+    "Activa": {
+      "default": true,
+      "type": "boolean",
+      "required": true
     }
   }
 }

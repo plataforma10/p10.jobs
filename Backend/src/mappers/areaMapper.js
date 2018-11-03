@@ -15,9 +15,9 @@ class AreaMapper {
     }
 
     MapearPosiciones (area) {
-        var posiciones = area.Posiciones.map(function (posicion) { 
-            return this.MapearPosicion(posicion);                     
-        }.bind(this));
+        var posiciones = area.Posiciones
+            .filter(x => x.Activa)
+            .map(posicion => this.MapearPosicion(posicion));
 
         return {
             PathArea: slugify(area.Nombre),
