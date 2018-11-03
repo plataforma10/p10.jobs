@@ -13,11 +13,8 @@ services:
       - 8082:8082
     depends_on: 
       - cms
-    environment:
-      CMS: http://cms:1337
-      PORT: 8082
-      CACHE_AREAS: 0
-      CACHE_HEADER: 0
+    environment: 
+      - CMS=http://cms:1337
   cms:
     build: ./cms
     image: strapi/strapi
