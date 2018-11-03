@@ -8,6 +8,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
+import Card, { CardBody } from "../card";
 // core components
 import styles from "./styles";
 
@@ -18,34 +19,34 @@ class CustomTable extends Component {
   render() {
     const { classes, tableHead, color, children } = this.props;
     return (
-      <div className={classes.tableResponsive}>
-        <Table className={classes.table}>
-          {tableHead !== undefined ? (
-            <TableHead className={classes[color]}>
-              <TableRow>
-                {tableHead.map((prop, key) => {
-                  const classNameHead = classNames(
-                    classes.tableCell, 
-                    classes.tableHeadCell,{
-                      [classes.visiblemd]: (key > 0 && prop)
-                    });
-                  return (
-                    <TableCell
-                      className={classNameHead}
-                      key={key}
-                    >
-                      {prop}
-                    </TableCell>
-                  );
-                })}
-              </TableRow>
-            </TableHead>
-          ) : null}
-          <TableBody>
-            { children }
-          </TableBody>
-        </Table>
-      </div>
+      
+      <Card>
+        <CardBody>
+            <div className={classes.tableResponsive}>
+              <Table className={classes.table}>
+                {tableHead !== undefined ? (
+                  <TableHead className={classes[color]}>
+                    <TableRow>
+                      {tableHead.map((prop, key) => {
+                        const classNameHead = classNames( classes.tableCell,  classes.tableHeadCell,{
+                            [classes.visiblemd]: (key > 0 && prop)
+                          });
+                        return (
+                          <TableCell className={classNameHead} key={key} >
+                            {prop}
+                          </TableCell>
+                        );
+                      })}
+                    </TableRow>
+                  </TableHead>
+                ) : null}
+                <TableBody>
+                  { children }
+                </TableBody>
+              </Table>
+            </div>
+          </CardBody>
+      </Card>
     );
   }
 }

@@ -4,16 +4,17 @@ import moment from 'moment';
 // Componentes
 import GridContainer from "../../../grid/gridItem";
 import CustomTable, { TableItemPosicion } from "../../../table";
-import Card, { CardBody } from "../../../card";
 import SnackbarContent from '../../../snackbar';
 import Loading from '../../../loading';
+import SearchBar from '../../../searchBar';
 
 class TablaPosiciones extends Component {
     constructor() {
         super();
         this.state = {
             error: false,
-            Posiciones: []
+            posiciones: [],
+            query: ""
         };
     }
 
@@ -27,9 +28,10 @@ class TablaPosiciones extends Component {
     
     onSetResult = (posiciones) => {
         if(posiciones.length) {
-            var area = this.props.area;      
-            this.setState({
-                Posiciones: posiciones.map(function (pos) {
+            var area = this.props.area;
+
+            this.setState({ 
+                posiciones: posiciones.map(function (pos) {
                     return {
                         Titulo: `${pos.Titulo}`,
                         Localidad: `${pos.Localidad}`,
@@ -48,42 +50,46 @@ class TablaPosiciones extends Component {
         this.setState({ error: true });
     }
 
-    render() {
+    filter = () => {
+        var filterResult = this.state.posiciones
+            .filter(posicion => posicion.Titulo.includes(this.state.query));
 
+
+        return(
+            filterResult.length > 0 ?                
+                filterResult.map((prop, key) => {
+                    return (
+                        <TableItemPosicion key={key} posicion={prop} color="info" />
+                    )
+                }) :
+            <span>No se encontraron resultados</span>
+        )
+    }
+
+    render() {
         if (this.state.error) {
             const message = (
-                <span>
-                    No se han cargado posiciones para el área seleccionada.
-                </span>
+                <span> No se han cargado posiciones para el área seleccionada.</span>
             );
             return (
                 <GridContainer>
-                    <SnackbarContent message={message}
-                        color="danger"
-                    />
+                    <SnackbarContent message={message} color="danger" />
                 </GridContainer>
             );
         }
         
-        if(this.state.Posiciones.length === 0){
+        if(this.state.posiciones.length === 0){
             return (
                 <Loading />
             );
         }
-
+        
         return (
             <GridContainer>
-                <Card>
-                    <CardBody>
-                        <CustomTable color="info" tableHead={["Puesto", "Localidad", "Fecha", ""]}>
-                            {this.state.Posiciones.map((prop, key) => {
-                                return (
-                                    <TableItemPosicion key={key} posicion={prop} color="info" />
-                                )
-                            })}                                
-                        </CustomTable>
-                    </CardBody>
-                </Card>
+                <SearchBar color="info" onChange={(e) => this.setState({ query: e.target.value })}/>
+                <CustomTable color="info" tableHead={["Puesto", "Localidad", "Fecha", ""]}>
+                    { this.filter() }                                
+                </CustomTable>
             </GridContainer>
         );
     }

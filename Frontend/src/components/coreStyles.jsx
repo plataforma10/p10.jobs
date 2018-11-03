@@ -56,7 +56,7 @@ const main = {
     background: "#FFFFFF",
     position: "relative",
     zIndex: "3",
-    padding: "70px 0"
+    padding: "30px 0"
 };
   
 const mainRaised = {
