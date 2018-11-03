@@ -12,7 +12,7 @@ class TablaPosiciones extends Component {
     constructor() {
         super();
         this.state = {
-            error: false,
+            error: true,
             posiciones: [],
             query: ""
         };
@@ -66,18 +66,7 @@ class TablaPosiciones extends Component {
         )
     }
 
-    render() {
-        if (this.state.error) {
-            const message = (
-                <span> No se han cargado posiciones para el área seleccionada.</span>
-            );
-            return (
-                <GridContainer>
-                    <SnackbarContent message={message} color="danger" />
-                </GridContainer>
-            );
-        }
-        
+    render() {        
         if(this.state.posiciones.length === 0){
             return (
                 <Loading />
@@ -87,9 +76,14 @@ class TablaPosiciones extends Component {
         return (
             <GridContainer>
                 <SearchBar color="info" onChange={(e) => this.setState({ query: e.target.value })}/>
-                <CustomTable color="info" tableHead={["Puesto", "Localidad", "Fecha", ""]}>
-                    { this.filter() }                                
-                </CustomTable>
+                { this.state.error ? 
+                    (<SnackbarContent message={
+                        <span>A ocurrido un error al intentar cargar los puestos disponibles.</span>
+                    } color="danger" />) : 
+                    (<CustomTable color="info" tableHead={["Puesto", "Localidad", "Fecha", ""]}>
+                        { this.filter() }                                
+                    </CustomTable>) 
+                }
             </GridContainer>
         );
     }
