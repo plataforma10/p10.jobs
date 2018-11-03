@@ -12,7 +12,7 @@ class TablaPosiciones extends Component {
     constructor() {
         super();
         this.state = {
-            error: true,
+            error: false,
             posiciones: [],
             query: ""
         };
