@@ -10,6 +10,7 @@
 */build
 cms/public
 Backend/public
+Backend/uploads
 Frontend/public/*.js
 Frontend/public/*.jsgz
 package-lock.json
