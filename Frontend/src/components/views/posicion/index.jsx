@@ -47,7 +47,7 @@ class Posicion extends Component {
         const { classes } = this.props;
         const area = this.props.match.params.area;
         if (this.state.NoEncontrado) {
-          return <NotMatch/>;
+          return <NotMatch />
         }
 
         return (
@@ -66,7 +66,7 @@ class Posicion extends Component {
                       <BotonLink path={`/area/${area}`}>
                         Volver a {area}
                       </BotonLink>
-                      <Modal nombre={"Postularme"}/>
+                      <Modal nombre={"Postularme"} area={this.props.match.params.area} posicion={this.props.match.params.posicion}/>
                   </GridItem>
                 </div>)
               }

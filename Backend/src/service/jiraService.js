@@ -3,14 +3,14 @@ const FormData = require('form-data');
 var fs = require('fs');
 
 class Jira {
-    async CrearIssue(nombre, apellido, email, archivo) {
+    async CrearIssue(nombre, apellido, email, area, posicion, archivo) {
         try {
             var response = await axios({
                 method: 'post',
                 url: `${process.env.JIRA}/rest/api/2/issue`,
                 auth: {
-                    username: process.env.AuthClientId,
-                    password: process.env.AuthSecret
+                    username: process.env.JIRA_Usuario,
+                    password: process.env.JIRA_Password
                 },
                 data: {
                     fields: {
@@ -18,7 +18,7 @@ class Jira {
                             id: process.env.JIRA_IdProyect
                         },
                         summary: apellido + ' ' + nombre + ' (' + email + ')',
-                        description: email,
+                        description: `Area: ${area}\n Posicion: ${posicion}\n Email: ${email}`,
                         issuetype: {
                             id: process.env.JIRA_issuetype
                         }
@@ -44,8 +44,8 @@ class Jira {
                 method: 'post',
                 url: `${process.env.JIRA}/rest/api/2/issue/${taskKey}/attachments`,
                 auth: {
-                    username: process.env.AuthClientId,
-                    password: process.env.AuthSecret
+                    username: process.env.JIRA_Usuario,
+                    password: process.env.JIRA_Password
                 },
                 data: form,
                 headers: headers

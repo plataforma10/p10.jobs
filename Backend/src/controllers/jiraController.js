@@ -30,15 +30,17 @@ const upload = multer({
     }
 });
 
-router.post('/jira/:nombre/:apellido/:email', upload.single("file"), async function (req, res, next) {
+router.post('/crearissue', upload.single("file"), async function (req, res, next) {
     try {
         await jiraService.CrearIssue(
-            req.params.nombre,
-            req.params.apellido,
-            req.params.email,
+            req.body.nombre,
+            req.body.apellido,
+            req.body.email,
+            req.body.area,
+            req.body.posicion,
             req.file
         );
-        res.send(200);
+        res.sendStatus(200);
     }
     catch (err) {
         next(err);

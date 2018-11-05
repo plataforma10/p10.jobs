@@ -47,12 +47,21 @@ class Modal extends React.Component {
     });
   }
 
-  acceptPostulacion() {
+  acceptPostulacion(area, posicion) {
     this.setState({ error: false });
 
     if (this.validar()) {
-      const { nombre, apellido, email } = this.state;
-      axios.post(`${process.env.HOST_BACK}/jira/${nombre}/${apellido}/${email}/`, this.state.archivo)
+      const { nombre, apellido, email, archivo } = this.state;
+
+      var data = new FormData();
+      data.append('area', area);
+      data.append('posicion', posicion);
+      data.append('nombre', nombre);
+      data.append('apellido', apellido);
+      data.append('email', email);
+      data.append('file', archivo);
+
+      axios.post(`${process.env.HOST_BACK}/crearissue/`, data)
         .then((res) => {
           this.handleClose();
         })
@@ -63,12 +72,7 @@ class Modal extends React.Component {
   }
 
   handleUploadFile = (event) => {
-    var file = new FormData();
-    file.append('file', event.target.files[0]);
-
-    this.setState({
-      archivo: file
-    });
+    this.setState({archivo: event.target.files[0]});
   }
 
   validar = () => {
@@ -89,7 +93,7 @@ class Modal extends React.Component {
   }
 
   render() {
-    const { classes, btnPosicion } = this.props;
+    const { classes, btnPosicion, area, posicion } = this.props;
     return (
       <div className={`${classes.container} ${classes[btnPosicion]}`}>
         <Boton color="rose" onClick={() => this.handleClickOpen()}>
@@ -139,7 +143,7 @@ class Modal extends React.Component {
             <Upload nombre={"Subi tu CV"} handleUploadFile={this.handleUploadFile.bind(this)} />
           </DialogContent>
           <DialogActions className={classes.modalFooter}>
-            <div className={classes.modalBoton}><Boton onClick={() => this.acceptPostulacion()} color="success" type="submit"> Aceptar </Boton></div>
+            <div className={classes.modalBoton}><Boton onClick={() => this.acceptPostulacion(area, posicion)} color="success" type="submit"> Aceptar </Boton></div>
             <div className={`${classes.modalBoton} right`}><Boton onClick={() => this.handleClose()} color="danger"> Cancelar </Boton></div>
           </DialogActions>
         </Dialog>
