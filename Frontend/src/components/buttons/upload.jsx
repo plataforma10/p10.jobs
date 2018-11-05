@@ -18,6 +18,7 @@ const styles = theme => ({
 @withStyles(styles)
 class Upload extends PureComponent {
   onInputChange = (e) => {
+    this.props.handleUploadFile(e);
     var fileName = e.target.value.split( '\\' ).pop();
     document.getElementById("file-seleccionado").innerText = fileName;
   }
