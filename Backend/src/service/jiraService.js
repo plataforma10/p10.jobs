@@ -9,20 +9,18 @@ class Jira {
                 method: 'post',
                 url: `${process.env.JIRA}/rest/api/2/issue`,
                 auth: {
-                    // username: process.env.AuthClientId,
-                    // password: process.env.AuthSecret
-                    username: "matias.paz@plataforma10.com",
-                    password: "wvm79XwDpZbfHkw5wUk60444"
+                    username: process.env.AuthClientId,
+                    password: process.env.AuthSecret
                 },
                 data: {
                     fields: {
                         project: {
-                            id: '10006'
+                            id: process.env.JIRA_IdProyect
                         },
                         summary: apellido + ' ' + nombre + ' (' + email + ')',
                         description: email,
                         issuetype: {
-                            id: '10002'
+                            id: process.env.JIRA_issuetype
                         }
                     }
                 }
@@ -46,10 +44,8 @@ class Jira {
                 method: 'post',
                 url: `${process.env.JIRA}/rest/api/2/issue/${taskKey}/attachments`,
                 auth: {
-                    // username: process.env.AuthClientId,
-                    // password: process.env.AuthSecret,
-                    username: "matias.paz@plataforma10.com",
-                    password: "wvm79XwDpZbfHkw5wUk60444"
+                    username: process.env.AuthClientId,
+                    password: process.env.AuthSecret
                 },
                 data: form,
                 headers: headers
