@@ -1,11 +1,9 @@
 {
-  "name": "server",
-  "version": "1.0.0",
+  "name": "p10jobsback",
+  "version": "0.1.0",
   "description": "",
   "scripts": {
-    "start": "node app.js",
-    "start:dev": "env CMS=http://localhost:1337/ CACHE_AREAS=0 CACHE_HEADER=0 node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node app.js"
   },
   "author": "Plataforma 10",
   "license": "ISC",

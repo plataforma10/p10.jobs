@@ -10,6 +10,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import { setHeader } from '../../../actions';
 import { reduxConnect } from '../../HOCs';
 import BotonLink from '../../buttons/botonLink';
+import NotMatch from '../../notMatch';
 
 // Estilos
 import estilos from './styles';
@@ -32,7 +33,8 @@ class Area extends Component {
     componentDidMount() {
         axios.get(`${process.env.HOST_BACK}/area/${this.props.match.params.area}`)
             .then((res) => res.data)
-            .then((result) => this.onSetResult(result));    
+            .then((result) => this.onSetResult(result))
+            .catch((error) => this.onSetError(error));    
     }
 
     onSetResult = (area) => {
@@ -40,9 +42,19 @@ class Area extends Component {
         this.props.dispatch(setHeader(area.Header));
     }
 
+    onSetError = (error) => {
+        this.setState({ error: true });
+    }
+
     render() {
         const { classes } = this.props;
         
+        if(this.state.error){
+            return (
+                <NotMatch />
+            );
+        }
+
         return (
             <Layout className={classes.main}>
                 <GridContainer>

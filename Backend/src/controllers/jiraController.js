@@ -1,6 +1,5 @@
 const router = require("express").Router();
 const jiraService = require('../service/jiraService');
-const success = require('../helpers/responseHelper');
 const multer = require('multer');
 const path = require('path');
 

@@ -11,7 +11,7 @@ class Areas {
             var res = await axios.get(`${process.env.CMS}/area`);
             
             var areas = res.data            
-                .filter(x => x.Activa && x.Posiciones.length > 0)
+                .filter(x => x.Activa && x.Posiciones.length > 0 && x.Posiciones.every(posicon => posicon.Activa))
                 .map(area => areaMapper.MapearArea(area));
 
             return cacheService.Set("areas", areas, process.env.CACHE_AREAS);   
