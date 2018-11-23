@@ -17,6 +17,15 @@ import CustomInput from '../customInput';
 import styles from "./styles";
 import Upload from '../buttons/upload';
 import axios from 'axios';
+import Recaptcha from "react-recaptcha";
+
+const sitekey = process.env.SITE_KEY;
+
+let recaptchaInstance;
+
+const resetRecaptcha = () => {
+  recaptchaInstance.reset();
+};
 
 function Transition(props) {
   return <Slide direction="down" {...props} />;
@@ -31,9 +40,18 @@ class Modal extends React.Component {
       modal: false,
       archivo: null,
       error: false,
-      mensajeError: ""
+      mensajeError: "",
+      nombre: "",
+      formularioHabilitado: false
     };
   }
+
+  verifyCallback = (response) => {
+    this.setState({
+      formularioHabilitado: true
+    });
+  };
+
   handleClickOpen() {
     this.setState({
       modal: true
@@ -41,9 +59,15 @@ class Modal extends React.Component {
   }
 
   handleClose() {
+    resetRecaptcha();
     this.setState({
       modal: false,
-      error: false
+      error: false,
+      nombre: "",
+      apellido: "",
+      email: "",
+      reiniciado: true,
+      formularioHabilitado: false
     });
   }
 
@@ -72,7 +96,7 @@ class Modal extends React.Component {
   }
 
   handleUploadFile = (event) => {
-    this.setState({archivo: event.target.files[0]});
+    this.setState({ archivo: event.target.files[0], reiniciado: false });
   }
 
   validar = () => {
@@ -84,12 +108,11 @@ class Modal extends React.Component {
   }
 
   handleInputChange(event) {
-    if (!event.target.value) {
-      this.setState({ [`${event.target.id}Requerido`]: true });
-    }
-    else {
-      this.setState({ [event.target.id]: event.target.value, [`${event.target.id}Requerido`]: false });
-    }
+    this.setState(
+      {
+        [event.target.id]: event.target.value,
+        [`${event.target.id}Requerido`]: !event.target.value
+      });
   }
 
   render() {
@@ -109,41 +132,46 @@ class Modal extends React.Component {
             <h4 className={classes.modalTitle}>Completa el siguiente formulario</h4>
           </DialogTitle>
           <DialogContent id="modal-slide-description" className={classes.modalBody}>
-            {this.state.error ?
-              (<SnackbarContent
-                message={
-                  <span>{this.state.mensajeError}</span>
-                }
-                color="danger"
-              />) : null}
+            {
+              this.state.error ?
+                (<SnackbarContent
+                  message={
+                    <span>{this.state.mensajeError}</span>
+                  }
+                  color="danger"
+                />) : null
+            }
             <CustomInput labelText="Nombre" id="nombre"
-              formProps={
-                {
-                  fullWidth: true,
-                  value: this.state.nombre,
-                  onChange: this.handleInputChange.bind(this)
-                }}
+              formProps={{ fullWidth: true, onChange: this.handleInputChange.bind(this) }}
+              inputProps={{ value: this.state.nombre }}
               error={this.state.nombreRequerido} />
             <CustomInput labelText="Apellido" id="apellido"
-              formProps={
-                {
-                  fullWidth: true,
-                  value: this.state.apellido,
-                  onChange: this.handleInputChange.bind(this)
-                }}
+              formProps={{ fullWidth: true, onChange: this.handleInputChange.bind(this) }}
+              inputProps={{ value: this.state.apellido }}
               error={this.state.apellidoRequerido} />
             <CustomInput labelText="Email" id="email"
-              formProps={
-                {
-                  fullWidth: true,
-                  value: this.state.email,
-                  onChange: this.handleInputChange.bind(this)
-                }}
+              formProps={{ fullWidth: true, onChange: this.handleInputChange.bind(this) }}
+              inputProps={{ value: this.state.email }}
               error={this.state.emailRequerido} />
-            <Upload nombre={"Subi tu CV"} handleUploadFile={this.handleUploadFile.bind(this)} />
+            <Upload nombre={"Subi tu CV"} handleUploadFile={this.handleUploadFile.bind(this)}
+              reiniciado={this.state.reiniciado} />
+            <Recaptcha
+              ref={e => recaptchaInstance = e}
+              sitekey={sitekey}
+              size="compact"
+              render="explicit"
+              verifyCallback={() => this.verifyCallback()}
+            />
           </DialogContent>
           <DialogActions className={classes.modalFooter}>
-            <div className={classes.modalBoton}><Boton onClick={() => this.acceptPostulacion(area, posicion)} color="success" type="submit"> Aceptar </Boton></div>
+            <div className={classes.modalBoton}>
+              <Boton onClick={() => this.acceptPostulacion(area, posicion)}
+                color="success"
+                type="submit"
+                disabled={!this.state.formularioHabilitado}
+              > Aceptar
+              </Boton>
+            </div>
             <div className={`${classes.modalBoton} right`}><Boton onClick={() => this.handleClose()} color="danger"> Cancelar </Boton></div>
           </DialogActions>
         </Dialog>

@@ -24,7 +24,11 @@ class Upload extends PureComponent {
   }
 
   render(){
-    const { classes, nombre } = this.props;
+    const { classes, nombre , reiniciado} = this.props;
+    if(reiniciado){
+      document.getElementById("file-seleccionado").innerText = "Selecciona un archivo";
+      document.getElementById("contained-button-file").value = null;
+    }
     return(
       <div>
         <input onChange={this.onInputChange} accept="application/msword, application/vnd.ms-excel,
