@@ -63,6 +63,7 @@ class Modal extends React.Component {
     this.setState({
       modal: false,
       error: false,
+      archivo: null,
       nombre: "",
       apellido: "",
       email: "",
