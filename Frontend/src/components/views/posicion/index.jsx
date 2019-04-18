@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import withStyles from "@material-ui/core/styles/withStyles";
 // Componentes
 import Layout from '../layout';
@@ -9,71 +9,67 @@ import showdown  from 'showdown';
 import axios from 'axios';
 import NotMatch from '../../notMatch';
 import Loading from '../../loading'
-import { HeaderDefecto } from '../../HOCs';
+import { useDefaultHeader } from '../../Hooks/headerContext';
 import BotonLink from '../../buttons/botonLink';
 
 // Estilos
-import posicionStyle from './styles';
+import styles from './styles';
 
-@HeaderDefecto
-@withStyles(posicionStyle)
-class Posicion extends Component {
-    constructor(){
-      super();
-      this.state = {
-        Titulo: "",
-        Descripcion: "",
-        NoEncontrado: false
-      };
-    }
-    
-    componentDidMount() {
-      var area = this.props.match.params.area;
-      var posicion = this.props.match.params.posicion;
-      axios.get(`${process.env.HOST_BACK}/area/${area}/posicion/${posicion}`)
-        .then((res) => this.onSetResult(res.data))
-        .catch(() => this.setState({NoEncontrado: true}));
-    }
+const Posicion = props => {
+  useDefaultHeader();
+  const [posicion, setPosision] = useState({
+    Titulo: "",
+    Descripcion: "",
+    NoEncontrado: false
+  });
+      
+  const { classes } = props;
+  const areaName = props.match.params.area;  
+  const posicionName = props.match.params.posicion;  
 
-    onSetResult = (posicion) => {
-      var converter = new showdown.Converter();
-      this.setState({
-        Titulo: posicion.Titulo,
-        Descripcion: converter.makeHtml(posicion.Descripcion)
-      });    
-    }
+  useEffect(() => {
+    axios.get(`${process.env.HOST_BACK}/area/${areaName}/posicion/${posicionName}`)
+      .then((res) => onSetResult(res.data))
+      .catch(() => setPosision({
+        NoEncontrado: true 
+      }));
+  }, []);
 
-    render() {
-        const { classes } = this.props;
-        const area = this.props.match.params.area;
-        if (this.state.NoEncontrado) {
-          return <NotMatch />
+  function onSetResult (posicion) {
+    var converter = new showdown.Converter();
+    setPosision({
+      Titulo: posicion.Titulo,
+      Descripcion: converter.makeHtml(posicion.Descripcion)
+    });    
+  }
+
+  if (posicion.NoEncontrado) {
+    return <NotMatch />
+  }
+
+  return (
+      <Layout>
+        <GridContainer>
+        {!posicion.Titulo && !posicion.Descripcion && !posicion.NoEncontrado ? 
+          (<GridItem className={classes.container}>
+            <Loading/>
+          </GridItem>) :
+          (<div className={classes.container}>
+            <GridItem>
+              <h1 className={classes.title}>{posicion.Titulo}</h1>
+              <span dangerouslySetInnerHTML={{__html: posicion.Descripcion}}></span>
+            </GridItem>
+            <GridItem className={classes.botones}>
+                <BotonLink path={`/area/${areaName}`}>
+                  Volver a {areaName}
+                </BotonLink>
+                <Modal nombre={"Postularme"} area={areaName} posicion={posicionName}/>
+            </GridItem>
+          </div>)
         }
-
-        return (
-            <Layout>
-              <GridContainer>
-              {!this.state.Titulo && !this.state.Descripcion && !this.state.NoEncontrado ? 
-                (<GridItem className={classes.container}>
-                  <Loading/>
-                </GridItem>) :
-                (<div className={classes.container}>
-                  <GridItem>
-                    <h1 className={classes.title}>{this.state.Titulo}</h1>
-                    <span dangerouslySetInnerHTML={{__html: this.state.Descripcion}}></span>
-                  </GridItem>
-                  <GridItem className={classes.botones}>
-                      <BotonLink path={`/area/${area}`}>
-                        Volver a {area}
-                      </BotonLink>
-                      <Modal nombre={"Postularme"} area={this.props.match.params.area} posicion={this.props.match.params.posicion}/>
-                  </GridItem>
-                </div>)
-              }
-              </GridContainer>
-            </Layout>
-        );
-    };
+        </GridContainer>
+      </Layout>
+  );
 }
 
-export default Posicion
+export default withStyles(styles)(Posicion);

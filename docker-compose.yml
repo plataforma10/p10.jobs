@@ -10,11 +10,13 @@ services:
   back:
     build: ./Backend
     ports:
-      - 8082:8082
+      - 8083:8083
     depends_on: 
       - cms
     environment: 
       - CMS=http://cms:1337
+      - PORT=8083
+      - FRONT=http://localhost:8081
   cms:
     build: ./cms
     image: strapi/strapi

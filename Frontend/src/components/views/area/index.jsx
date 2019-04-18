@@ -1,73 +1,68 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from "classnames";
 
 import axios from 'axios';
+
 // Componentes
 import TablaPosiciones from './tablaPosiciones';
 import GridContainer from '../../grid/gridContainer';
 import GridItem from '../../grid/gridItem';
 import withStyles from "@material-ui/core/styles/withStyles";
-import { setHeader } from '../../../actions';
-import { reduxConnect } from '../../HOCs';
 import BotonLink from '../../buttons/botonLink';
 import NotMatch from '../../notMatch';
+import { useHeaderContext } from '../../Hooks/headerContext';
 
 // Estilos
-import estilos from './styles';
+import styles from './styles';
 
 // Views
 import Layout from '../layout';
 
-@reduxConnect
-@withStyles(estilos)
-class Area extends Component {
-    constructor() {
-        super();
-        this.state = {
-            area: {}
-        }
+const Area = props => {
+    const dispatch = useHeaderContext()[1];
+    const setArea = useState({})[1];
+    const [error, setError] = useState(false);
+    const { classes } = props;
+    const areaName = props.match.params.area;
 
-        this.componentDidMount = this.componentDidMount.bind(this);
-    }
-
-    componentDidMount() {
-        axios.get(`${process.env.HOST_BACK}/area/${this.props.match.params.area}`)
+    useEffect(() => {
+        axios.get(`${process.env.HOST_BACK}/area/${areaName}`)
             .then((res) => res.data)
-            .then((result) => this.onSetResult(result))
-            .catch((error) => this.onSetError(error));    
+            .then((result) => onSetResult(result))
+            .catch(() => onSetError());
+    }, []);
+
+    function onSetResult(area) {
+        setArea(area);
+        dispatch({
+            title: area.Header.Titulo,
+            description: area.Header.Descripcion,
+            image: area.Header.Imagen
+          });
     }
 
-    onSetResult = (area) => {
-        this.setState({ area: area });
-        this.props.dispatch(setHeader(area.Header));
+    function onSetError() {
+        setError(true);
     }
-
-    onSetError = (error) => {
-        this.setState({ error: true });
-    }
-
-    render() {
-        const { classes } = this.props;
-        
-        if(this.state.error){
-            return (
-                <NotMatch />
-            );
-        }
-
+    
+    if(error){
         return (
-            <Layout className={classes.main}>
-                <GridContainer>
-                    <GridItem className={classNames(classes.container, classes.noPadding)}>
-                            <TablaPosiciones area={this.props.match.params.area} />
-                    </GridItem>
-                    <GridItem className={classNames(classes.container)}>
-                        <BotonLink path='/' color='info'>Volver atras</BotonLink>
-                    </GridItem>
-                </GridContainer>
-            </Layout>
+            <NotMatch />
         );
     }
+
+    return (
+        <Layout className={classes.main}>
+            <GridContainer>
+                <GridItem className={classNames(classes.container, classes.noPadding)}>
+                        <TablaPosiciones area={areaName} />
+                </GridItem>
+                <GridItem className={classNames(classes.container)}>
+                    <BotonLink path='/' color='info'>Volver atras</BotonLink>
+                </GridItem>
+            </GridContainer>
+        </Layout>
+    );
 }
 
-export default Area;
+export default withStyles(styles)(Area);

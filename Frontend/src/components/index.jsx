@@ -1,5 +1,5 @@
 // React
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from "react-router-dom";
 
 // Components
@@ -8,15 +8,15 @@ import Area from "./views/area";
 import Posicion from "./views/posicion";
 import NotFound from "./views/notFound";
 import NoMatch from "./notMatch";
+import { HeaderProvider} from './Hooks/headerContext';
 
 // Styles
 import withStyles from "@material-ui/core/styles/withStyles";
 import { styles } from './styles';
 
-@withStyles(styles)
-class App extends Component
+const App = () =>
 {  
-  componentDidMount() {    
+  useEffect(() => {    
     const rootServer = document.getElementById('root-server');
     if (rootServer && rootServer.parentNode) {
       rootServer.parentNode.removeChild(rootServer);
@@ -25,10 +25,10 @@ class App extends Component
     if (jssStyles && jssStyles.parentNode) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
-  }
+  }, []);
 
-  render() {
-    return(
+  return (
+    <HeaderProvider>
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/area/:area" component={Area} />
@@ -36,8 +36,8 @@ class App extends Component
         <Route exact path="/no-encontrado" component={NotFound} />
         <Route component={NoMatch} />
       </Switch>
-    );
-  }
+    </HeaderProvider>
+  );
 }
 
-export default App;
+export default withStyles(styles)(App);
