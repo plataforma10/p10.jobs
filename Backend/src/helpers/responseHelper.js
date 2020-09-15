@@ -1,12 +1,9 @@
 success = (result, res, next) => {
-    if(result.status == 200){
-        res.json(result.data);
+    if(result){
+        res.json(result);
         return;
     }
-    if(result.response.status == 404){
-        next();
-        return;
-    }
+    
     next(result);
     return;
 }

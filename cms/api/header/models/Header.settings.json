@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "header",
+  "info": {
+    "name": "header",
+    "description": "Con esto se podran manejar los headers por pagina"
+  },
+  "options": {
+    "timestamps": true
+  },
+  "attributes": {
+    "Titulo": {
+      "type": "string",
+      "required": true
+    },
+    "Descripcion": {
+      "type": "text"
+    },
+    "Imagen": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload"
+    },
+    "Seccion": {
+      "unique": true,
+      "type": "string",
+      "required": true
+    }
+  }
+}

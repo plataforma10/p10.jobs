@@ -2,25 +2,49 @@ var router = require("express").Router();
 var areasService = require('../service/areasService');
 var success = require('../helpers/responseHelper');
 
-router.get('/', async function (req, res, next) {
-    var areas = await areasService.ObtenerTodas();
-
-    success(areas, res, next);
+router.get('/areas', async function (req, res, next) {
+    try {
+        var areas = await areasService.ObtenerTodas();
+        success(areas, res, next);
+    }
+    catch (err) {
+        next(err);
+    }
 });
 
-router.get('/:nombre', async function (req, res, next) {
-    var area = await areasService.Obtener(
-        req.params.nombre);
-
-    success(area, res, next);
+router.get('/area/:area', async function (req, res, next) {
+    try {
+        var area = await areasService.Obtener(
+            req.params.area);
+    
+        success(area, res, next);
+    }
+    catch (err) {
+        next(err);
+    }
 });
 
-router.get('/:nombre/:posicion', async function (req, res, next) {
-    var posicion = await areasService.ObtenerPosicion(
-        req.params.nombre,
-        req.params.posicion);
+router.get('/area/:area/posiciones', async function (req, res, next) {
+    try {
+        var posiciones = await areasService.ObtenerPosicionesArea(req.params.area);
+        success(posiciones, res, next);
+    }
+    catch (err) {
+        next(err);
+    }
+});
 
-    success(posicion, res, next);
+router.get('/area/:area/posicion/:posicion', async function (req, res, next) {
+    try {
+        var posicion = await areasService.ObtenerPosicion(
+            req.params.area,
+            req.params.posicion);
+
+        success(posicion, res, next);
+    }
+    catch (err) {
+        next(err);
+    }
 });
 
 module.exports = router;

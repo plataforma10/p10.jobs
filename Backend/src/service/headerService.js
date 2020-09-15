@@ -1,25 +1,25 @@
 var axios = require('axios');
-var config = require('../settings/configuracion').Obtener(process.env.NODE_ENV);
-var slugify = require('../helpers/slugify');
-var NodeCache = require("node-cache");
-const cache = new NodeCache({ stdTTL: 100, checkperiod: 120 });
+var headerMapper = require("../mappers/headerMapper");
+var cacheService = require('./cacheService');
 
 class Header {
-    Obtener(success, error) {
+    async Obtener() {
         try {
-            var header = cache.get("header", true);
-            success(header);
+            return cacheService.Get("headers");
         }
         catch (err) {
-            axios.get(`${config.CMS}/header`)
-                .then((response) => {
-                    cache.set("header", response.data, config.CACHE_HEADER)
-                    success(response.data);
-                })
-                .catch((err) => {
-                    error(err);
-                });
+            var res = await axios.get(`${process.env.CMS}/header`);
+
+            var headers = res.data.map(header => headerMapper.MapearHeader(header, process.env.UPLOAD));
+
+            return cacheService.Set("headers", headers, process.env.CACHE_HEADER);
         }
+    }
+
+    async ObtenerHome() {
+        var headers = await this.Obtener();
+        var header = headers.find(x => x.Seccion === "Home");
+        return header;
     }
 }
 

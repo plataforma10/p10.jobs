@@ -1,50 +1,52 @@
 var axios = require('axios');
-var config = require('../settings/configuracion').Obtener(process.env.NODE_ENV);
-var slugify = require('../helpers/slugify');
-var NodeCache = require("node-cache");
 var areaMapper = require('../mappers/areaMapper');
-const cacheAreas = new NodeCache({ stdTTL: 100, checkperiod: 120 });
+var cacheService = require('./cacheService');
 
 class Areas {
 
-    ObtenerTodas() {
+    async ObtenerTodas() {
         try {
-            var areas = cacheAreas.get("areas", true);
-            return {
-                status: 200,
-                data: areas
-            };
+            return cacheService.Get("areas");
         } catch (err) {
-            return axios.get(`${config.CMS}/area`)
-                .then((response) => {
-                    var areas = response.data.map(function (area) {
-                        return areaMapper.MapearArea(area);
-                    });
-                    cacheAreas.set("areas", areas, config.CACHE_AREAS)
-                    return {
-                        status: 200,
-                        data: areas
-                    };
-                })
-                .catch((err) => {
-                    err.data = [];
-                    return err;
-                });
+            var res = await axios.get(`${process.env.CMS}/area`);
+            
+            var areas = res.data            
+                .filter(x => x.Activa && x.Posiciones.length > 0 && x.Posiciones.every(posicon => posicon.Activa))
+                .map(area => areaMapper.MapearArea(area));
+
+            return cacheService.Set("areas", areas, process.env.CACHE_AREAS);   
         }
     }
 
     async Obtener(nombre) {
-        var res = await this.ObtenerTodas();
-        var area = res.data.find(x => slugify(x.Nombre) === nombre.toLowerCase());
-        res.data = area ? area : [];
-        return res;
+        var areas = await this.ObtenerTodas();
+        return areas.find(x => x.Path === nombre.toLowerCase());
     }
 
+    async ObtenerTodasPosiciones() {
+        try {
+            return cacheService.Get("posiciones");;
+        } catch (err) {
+            var res = await axios.get(`${process.env.CMS}/area`);
+
+            var posiciones = res.data.map(function (area) {
+                return areaMapper.MapearPosiciones(area);
+            }); 
+
+            return cacheService.Set("posiciones", posiciones, process.env.CACHE_AREASS); 
+        }
+    }
+    
+    async ObtenerPosicionesArea(nombre) {
+        var areas = await this.ObtenerTodasPosiciones();
+        var area = areas.find(x => x.PathArea == nombre.toLowerCase());
+        return area.Posiciones;
+    } 
+
     async ObtenerPosicion(nombre, titulo) {
-        var res = await this.Obtener(nombre);
-        var posicion = res.data.find(x => slugify(x.Titulo) == titulo.toLowerCase());
-        res.data = posicion ? posicion : [];
-        return res;
+        var posiciones = await this.ObtenerPosicionesArea(nombre);
+        var posicion = posiciones.find(x => x.Path == titulo.toLowerCase());
+        return posicion;
     }
 }
 
